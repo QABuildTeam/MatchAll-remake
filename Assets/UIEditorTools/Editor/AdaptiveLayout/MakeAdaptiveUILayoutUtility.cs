@@ -79,9 +79,10 @@ namespace UIEditorTools
             var parentLocalPosition = anchorInParent + anchoredPosition;
             var anchorMin = new Vector2((parentLocalPosition + rect.min).x / parentRTsize.x, (parentLocalPosition + rect.min).y / parentRTsize.y);
             var anchorMax = new Vector2((parentLocalPosition + rect.max).x / parentRTsize.x, (parentLocalPosition + rect.max).y / parentRTsize.y);
-            /*
+            
             Debug.Log(
                 $"Processing object {rt.name}: " +
+                $"anchorInParent={anchorInParent}, " +
                 $"parent.rect.size={parentRTsize}, " +
                 $"rect.min={rect.min}, " +
                 $"rect.max={rect.max}, " +
@@ -91,7 +92,7 @@ namespace UIEditorTools
                 $"parentLocalPosition={parentLocalPosition}, " +
                 $"anchorMin={anchorMin}, " +
                 $"anchorMax={anchorMax}");
-            */
+            
             rt.offsetMin = Vector2.zero;
             rt.offsetMax = Vector2.zero;
             rt.anchorMin = anchorMin;

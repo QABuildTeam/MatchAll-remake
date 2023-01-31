@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cfbfc8baafde4c4585fdf0098fe56f2, type: 3}
+  m_Name: ShapeSettings
+  m_EditorClassIdentifier: 
+  sprites:
+  - type: 3
+    spriteReference:
+      m_AssetGUID: 67268d103dfd0104386ed3c3f7a465a0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - type: 1
+    spriteReference:
+      m_AssetGUID: 6a785eb17d6b3b0418ea869c8fd046cb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - type: 2
+    spriteReference:
+      m_AssetGUID: b302e297c63a25c46b6b56dd5e79a6d4
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  colors:
+  - index: 1
+    color: {r: 0.5019608, g: 0, b: 0, a: 1}
+  - index: 2
+    color: {r: 0, g: 0.5019608, b: 0, a: 1}
+  - index: 3
+    color: {r: 0, g: 0, b: 0.5019608, a: 1}
+  - index: 4
+    color: {r: 1, g: 0, b: 0, a: 1}
+  - index: 5
+    color: {r: 0, g: 1, b: 0, a: 1}
+  - index: 6
+    color: {r: 0, g: 0, b: 1, a: 1}
+  - index: 7
+    color: {r: 0.5019608, g: 0.5019608, b: 0, a: 1}
+  - index: 8
+    color: {r: 0.5019608, g: 0, b: 0.5019608, a: 1}
+  - index: 9
+    color: {r: 0, g: 0.5019608, b: 0.5019608, a: 1}
+  - index: 10
+    color: {r: 1, g: 1, b: 0, a: 1}
+  - index: 11
+    color: {r: 1, g: 0, b: 1, a: 1}
+  - index: 12
+    color: {r: 0, g: 1, b: 1, a: 1}

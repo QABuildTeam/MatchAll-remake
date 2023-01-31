@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameContexts:
   - {fileID: 11400000, guid: d5aa2559c0f555c458e52c5a1386a471, type: 2}
+  - {fileID: 11400000, guid: edc26b08cfa3ae34896009738e77e1c0, type: 2}

@@ -65,6 +65,14 @@ MonoBehaviour:
     m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Views/MainMenuUIView.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 7ba749d9400cb494fa992d81be587a1e
+    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Views/GameScreenUIView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a7e50a7230480754aa2c6442c01e0580
+    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Views/GameMessageUIView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6008065dd9f8e3e42a886dd7d94cfe7c, type: 2}
   m_SchemaSet:

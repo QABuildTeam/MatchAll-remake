@@ -573,6 +573,8 @@ GameObject:
   - component: {fileID: 2011223810658817559}
   - component: {fileID: 3721322758776562489}
   - component: {fileID: 2775611449278839200}
+  - component: {fileID: 7732318188320902201}
+  - component: {fileID: 71036395709014586}
   m_Layer: 0
   m_Name: MainMenuUIView
   m_TagString: Untagged
@@ -713,6 +715,31 @@ MonoBehaviour:
   nameInputField: {fileID: 2460164735231619512}
   startButton: {fileID: 744290051153471183}
   scoreValue: {fileID: 6741722707992636253}
+--- !u!114 &7732318188320902201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365485335976977243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b11bbcea9b59f94bad2a1321d06ef78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &71036395709014586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365485335976977243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28111263f088ad4419bda48c3c7b52d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.5
 --- !u!1 &3559806642508639936
 GameObject:
   m_ObjectHideFlags: 0
