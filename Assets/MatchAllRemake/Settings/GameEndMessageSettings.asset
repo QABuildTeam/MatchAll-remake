@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a0bcb203a63154cba9f016548d7331, type: 3}
   m_Name: GameEndMessageSettings
   m_EditorClassIdentifier: 
-  descriptors: []
+  descriptors:
+  - type: 0
+    messageText: Great!\nYou won the game!
+    imageReference:
+      m_AssetGUID: 9c32cc8b6766d9f40834c52e876ddbc9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    buttonText: OK
+  - type: 1
+    messageText: The time is over
+    imageReference:
+      m_AssetGUID: a7f618168aa6d4f4cbed9b6867c24294
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    buttonText: OK
