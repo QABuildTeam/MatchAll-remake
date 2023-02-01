@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39fffccfbf55f142a37ce3d313abc6f, type: 3}
-  m_Name: SettingsList
+  m_Script: {fileID: 11500000, guid: 31a0bcb203a63154cba9f016548d7331, type: 3}
+  m_Name: GameEndMessageSettings
   m_EditorClassIdentifier: 
-  settings:
-  - {fileID: 11400000, guid: 8d07d481c055c474ca4810c1751d24e0, type: 2}
-  - {fileID: 11400000, guid: 72ac38f5c0e01e24b8cf65f186077275, type: 2}
+  descriptors: []

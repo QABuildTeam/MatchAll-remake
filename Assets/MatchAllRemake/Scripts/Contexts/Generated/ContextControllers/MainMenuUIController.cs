@@ -7,6 +7,9 @@ using UIEditorTools.Settings;
 using UIEditorTools.Views;
 using System.Threading.Tasks;
 using MatchAll.Views;
+using MatchAll.Settings;
+using MatchAll.Environment;
+using UnityEngine;
 
 namespace MatchAll.Controllers
 {
@@ -14,46 +17,52 @@ namespace MatchAll.Controllers
     {
         private UniversalEventManager EventManager => environment.Get<UniversalEventManager>();
         private UniversalSettingsManager SettingsManager => environment.Get<UniversalSettingsManager>();
+        private IData Data => environment.Get<IData>();
 
         private MainMenuUIView MainMenuView => (MainMenuUIView)view;
         public MainMenuUIController(MainMenuUIView view, UniversalEnvironment environment) : base(view, environment)
         {
         }
 
-        private void OnNameAction()
+        private void OnCurrentPlayerNameAction()
         {
-            // insert useful code here
+            MainMenuView.ActiveCurrentPlayerName = false;
+            MainMenuView.ActivePlayerName = true;
         }
-        private void OnNameChanged(string value)
+        private void OnPlayerNameChanged(string value)
         {
-            // insert useful code here
+            MainMenuView.InteractiveStart = !string.IsNullOrEmpty(value);
         }
         private void OnStartAction()
         {
-            // insert useful code here
+            Data.PlayerName = MainMenuView.PlayerName;
+            EventManager.Get<GameScreenEvents>().OpenGameScreen?.Invoke();
         }
 
 
         private void Subscribe()
         {
-            MainMenuView.NameAction += OnNameAction;
-            MainMenuView.NameChanged += OnNameChanged;
+            MainMenuView.CurrentPlayerNameAction += OnCurrentPlayerNameAction;
+            MainMenuView.PlayerNameChanged += OnPlayerNameChanged;
             MainMenuView.StartAction += OnStartAction;
-
         }
 
         private void Unsubscribe()
         {
-            MainMenuView.NameAction -= OnNameAction;
-            MainMenuView.NameChanged -= OnNameChanged;
+            MainMenuView.CurrentPlayerNameAction -= OnCurrentPlayerNameAction;
+            MainMenuView.PlayerNameChanged -= OnPlayerNameChanged;
             MainMenuView.StartAction -= OnStartAction;
-
         }
-
 
         public override async Task Open()
         {
             MainMenuView.Environment = environment;
+            Debug.Log($"Data is {Data}");
+            MainMenuView.CurrentPlayerName = Data.PlayerName;
+            bool emptyPlayerName = string.IsNullOrEmpty(Data.PlayerName);
+            MainMenuView.ActivePlayerName = emptyPlayerName;
+            MainMenuView.ActiveCurrentPlayerName = !emptyPlayerName;
+            MainMenuView.InteractiveStart = !emptyPlayerName;
             await base.Open();
             Subscribe();
         }

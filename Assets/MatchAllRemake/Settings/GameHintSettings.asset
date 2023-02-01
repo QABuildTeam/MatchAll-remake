@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97192597c00f09c4f96065fc9c6f38df, type: 3}
+  m_Name: GameHintSettings
+  m_EditorClassIdentifier: 
+  descriptors:
+  - messageText: Score 2000 points clicking game objects in the game field\nwhich
+      match the sample\nbefore the timer runs out!
+    imageReference:
+      m_AssetGUID: 4e9a2099e33a1bf44bf3a0d4afc6d9dc
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    buttonText: Next >>>
+  - messageText: 'Scroll the game field simply moving the mouse to the corresponding
+      screen edge!\nWARNING: The game field is infinite!'
+    imageReference:
+      m_AssetGUID: 1f5292dbb3021be42ba73b38901b2580
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    buttonText: Next >>>
+  - messageText: You will earn 200 points if you match the sample,\nand loose 50
+      points otherwise.\nEach change of the sample will cost you 50 points.\nYou
+      have 60 seconds left.
+    imageReference:
+      m_AssetGUID: 17b9ad054b40cd74d91f97491b7e3eef
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    buttonText: GO!

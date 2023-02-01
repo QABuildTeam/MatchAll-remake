@@ -6,6 +6,7 @@ using UIEditorTools;
 using UIEditorTools.Views;
 using UIEditorTools.Environment;
 using UIEditorTools.Controllers;
+using MatchAll.Views;
 using Views.Common;
 using TMPro;
 
@@ -13,41 +14,51 @@ namespace MatchAll.Views
 {
     public partial class MainMenuUIView : UIView
     {
-        [SerializeField]
-        private PreformattedTextString nameLabelText;
-        public string NameLabelText
-        {
-            set => nameLabelText.Value = value;
-        }
 
         [SerializeField]
-        private Button nameButton;
-        public event Action NameAction;
-        private void OnNameButton()
+        private Button currentPlayerNameButton;
+        public event Action CurrentPlayerNameAction;
+        private void OnCurrentPlayerNameButton()
         {
-            NameAction?.Invoke();
+            CurrentPlayerNameAction?.Invoke();
         }
-        public bool ActiveName
+        public bool ActiveCurrentPlayerName
         {
-            get => nameButton.gameObject.activeInHierarchy;
-            set => nameButton.gameObject.SetActive(value);
+            get => currentPlayerNameButton.gameObject.activeInHierarchy;
+            set => currentPlayerNameButton.gameObject.SetActive(value);
         }
-        public bool InteractiveName
+        public bool InteractiveCurrentPlayerName
         {
-            get => nameButton.interactable;
-            set => nameButton.interactable = value;
+            get => currentPlayerNameButton.interactable;
+            set => currentPlayerNameButton.interactable = value;
         }
         [SerializeField]
-        private TMP_InputField nameInputField;
-        public string Name
+        private PreformattedTextString currentPlayerName;
+        public String CurrentPlayerName
         {
-            get => nameInputField.text;
-            set => nameInputField.text = value;
+            set => currentPlayerName.Value = value;
         }
-        public event Action<string> NameChanged;
-        private void OnNameInputFieldChanged(string value)
+        [SerializeField]
+        private TMP_InputField playerNameInputField;
+        public string PlayerName
         {
-            NameChanged?.Invoke(value);
+            get => playerNameInputField.text;
+            set => playerNameInputField.text = value;
+        }
+        public event Action<string> PlayerNameChanged;
+        private void OnPlayerNameInputFieldChanged(string value)
+        {
+            PlayerNameChanged?.Invoke(value);
+        }
+        public bool ActivePlayerName
+        {
+            get => playerNameInputField.gameObject.activeInHierarchy;
+            set => playerNameInputField.gameObject.SetActive(value);
+        }
+        public bool InteractivePlayerName
+        {
+            get => playerNameInputField.interactable;
+            set => playerNameInputField.interactable = value;
         }
 
         [SerializeField]
@@ -69,17 +80,17 @@ namespace MatchAll.Views
         }
         [SerializeField]
         private PreformattedTextInt scoreValue;
-        public int ScoreValue
+        public Int32 ScoreValue
         {
             set => scoreValue.Value = value;
         }
 
         protected override async Task Init()
         {
-            nameButton.onClick.RemoveAllListeners();
-            nameButton.onClick.AddListener(OnNameButton);
-            nameInputField.onValueChanged.RemoveAllListeners();
-            nameInputField.onValueChanged.AddListener(OnNameInputFieldChanged);
+            currentPlayerNameButton.onClick.RemoveAllListeners();
+            currentPlayerNameButton.onClick.AddListener(OnCurrentPlayerNameButton);
+            playerNameInputField.onValueChanged.RemoveAllListeners();
+            playerNameInputField.onValueChanged.AddListener(OnPlayerNameInputFieldChanged);
             startButton.onClick.RemoveAllListeners();
             startButton.onClick.AddListener(OnStartButton);
 
@@ -87,8 +98,8 @@ namespace MatchAll.Views
 
         protected override async Task Done()
         {
-            nameButton.onClick.RemoveAllListeners();
-            nameInputField.onValueChanged.RemoveAllListeners();
+            currentPlayerNameButton.onClick.RemoveAllListeners();
+            playerNameInputField.onValueChanged.RemoveAllListeners();
             startButton.onClick.RemoveAllListeners();
 
         }

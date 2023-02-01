@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39fffccfbf55f142a37ce3d313abc6f, type: 3}
-  m_Name: SettingsList
+  m_Script: {fileID: 11500000, guid: eb07696ade7a8934ab844669c4fcde0f, type: 3}
+  m_Name: GameEndMessageUIPair
   m_EditorClassIdentifier: 
-  settings:
-  - {fileID: 11400000, guid: 8d07d481c055c474ca4810c1751d24e0, type: 2}
-  - {fileID: 11400000, guid: 72ac38f5c0e01e24b8cf65f186077275, type: 2}
+  viewAssetReference:
+    m_AssetGUID: 0f57333e50a4d944ea790c11437d6601
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7740571615025570767}
   - component: {fileID: 276742784215189782}
   - component: {fileID: 1760134842995967433}
-  - component: {fileID: 6016157173989410899}
   m_Layer: 0
   m_Name: NameLabelText
   m_TagString: Untagged
@@ -136,20 +135,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6016157173989410899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967668554916528838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b40543acaf676f44d9fe6b51a0aa2f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textValue: {fileID: 1760134842995967433}
-  format: '{0}'
 --- !u!1 &2069110260694448585
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +380,7 @@ GameObject:
   - component: {fileID: 603755101285061564}
   - component: {fileID: 2460164735231619512}
   m_Layer: 0
-  m_Name: NameInputField
+  m_Name: PlayerNameInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -710,9 +695,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnOpen: 0
-  nameLabelText: {fileID: 6016157173989410899}
-  nameButton: {fileID: 85498034941720922}
-  nameInputField: {fileID: 2460164735231619512}
+  currentPlayerNameButton: {fileID: 85498034941720922}
+  currentPlayerName: {fileID: 4289468005327571162}
+  playerNameInputField: {fileID: 2460164735231619512}
   startButton: {fileID: 744290051153471183}
   scoreValue: {fileID: 6741722707992636253}
 --- !u!114 &7732318188320902201
@@ -1249,6 +1234,7 @@ GameObject:
   - component: {fileID: 5149493137886144036}
   - component: {fileID: 4638739954249219254}
   - component: {fileID: 4039379388270784965}
+  - component: {fileID: 4289468005327571162}
   m_Layer: 0
   m_Name: CurrentPlayerName
   m_TagString: Untagged
@@ -1373,6 +1359,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4289468005327571162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677305307115181183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40543acaf676f44d9fe6b51a0aa2f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textValue: {fileID: 4039379388270784965}
+  format: '{0}'
 --- !u!1 &4750211491616776003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1637,7 @@ GameObject:
   - component: {fileID: 4170079103231802332}
   - component: {fileID: 85498034941720922}
   m_Layer: 0
-  m_Name: NameButton
+  m_Name: CurrentPlayerNameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1972,7 +1972,7 @@ GameObject:
   - component: {fileID: 8201198081574372858}
   - component: {fileID: 8984099145494911770}
   m_Layer: 0
-  m_Name: NameInputFieldText
+  m_Name: PlayerNameInputFieldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

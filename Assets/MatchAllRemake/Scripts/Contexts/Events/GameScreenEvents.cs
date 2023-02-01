@@ -5,8 +5,8 @@ using UIEditorTools;
 
 namespace MatchAll.Environment
 {
-    public class MainMenuEvents : IEventProvider
+    public class GameScreenEvents : IEventProvider
     {
-        public UEvent OpenMainMenu;
+        public UEvent OpenGameScreen;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UIEditorTools;
 using UIEditorTools.Controllers;
 using UIEditorTools.Settings;
 using MatchAll.Environment;
@@ -14,10 +15,15 @@ namespace MatchAll.Startup
         {
         }
 
-        public override void Initialize()
+        protected override void InitializeGlobals()
         {
-            base.Initialize();
+            base.InitializeGlobals();
             Environment.Add<IData>(new DataController());
+        }
+
+        public override void Run()
+        {
+            Environment.Get<UniversalEventManager>().Get<MainMenuEvents>().OpenMainMenu?.Invoke();
         }
     }
 }
