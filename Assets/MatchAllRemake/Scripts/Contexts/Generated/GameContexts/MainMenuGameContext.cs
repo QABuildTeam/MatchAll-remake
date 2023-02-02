@@ -1,8 +1,6 @@
-using UnityEngine;
-using UIEditorTools;
-using UIEditorTools.Settings;
+using ACFW.Controllers;
 
-namespace MatchAll.Settings
+namespace MatchAll.Controllers
 {
     public class MainMenuGameContext : GameContext
     {

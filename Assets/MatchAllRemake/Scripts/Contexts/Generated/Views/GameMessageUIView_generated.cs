@@ -2,13 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
-using UIEditorTools;
-using UIEditorTools.Views;
-using UIEditorTools.Environment;
-using UIEditorTools.Controllers;
-using MatchAll.Views;
-using Views.Common;
-using TMPro;
+using ACFW.Views;
 
 namespace MatchAll.Views
 {

@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UIEditorTools;
-using UIEditorTools.Controllers;
-using UIEditorTools.Settings;
-using MatchAll.Environment;
+using ACFW;
+using ACFW.Startup;
+using ACFW.Controllers;
+using ACFW.Settings;
 using MatchAll.Controllers;
+using MatchAll.Environment;
 
 namespace MatchAll.Startup
 {
-    public class MatchAllApplicationContext : UIEditorTools.Startup.ApplicationContext
+    public class MatchAllApplicationContext : ApplicationContext
     {
         public MatchAllApplicationContext(ContextManager contextManager, SettingsList settings, GameContextList gameContextList) : base(contextManager, settings, gameContextList)
         {

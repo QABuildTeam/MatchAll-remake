@@ -1,11 +1,8 @@
-using UnityEngine;
-using UIEditorTools;
-using UIEditorTools.Environment;
-using UIEditorTools.Settings;
-using MatchAll.Controllers;
+using ACFW;
+using ACFW.Controllers;
 using MatchAll.Views;
 
-namespace MatchAll.Settings
+namespace MatchAll.Controllers
 {
     public class GameEndMessageUIPair : ViewControllerPair<GameEndMessageUIController, GameEndMessageUIView>
     {

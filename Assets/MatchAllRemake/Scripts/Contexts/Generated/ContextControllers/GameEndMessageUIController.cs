@@ -1,6 +1,6 @@
-using UIEditorTools;
-using UIEditorTools.Controllers;
-using UIEditorTools.Environment;
+using ACFW;
+using ACFW.Controllers;
+using ACFW.Views;
 using System.Threading.Tasks;
 using MatchAll.Views;
 using MatchAll.Environment;
@@ -15,7 +15,7 @@ namespace MatchAll.Controllers
         private UniversalSettingsManager SettingsManager => environment.Get<UniversalSettingsManager>();
 
         private GameEndMessageUIView GameEndMessageView => (GameEndMessageUIView)view;
-        public GameEndMessageUIController(GameMessageUIView view, UniversalEnvironment environment) : base(view, environment)
+        public GameEndMessageUIController(GameEndMessageUIView view, UniversalEnvironment environment) : base(view, environment)
         {
         }
 

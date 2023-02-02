@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Views.Common;
+using ACFW.Views;
 
 namespace MatchAll.Views
 {

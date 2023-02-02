@@ -1,9 +1,9 @@
-using UIEditorTools.Controllers;
-using UIEditorTools.Startup;
+using ACFW;
+using ACFW.Controllers;
 
 namespace MatchAll.Startup
 {
-    public class MatchAllStartup : UIEditorTools.Startup.Startup
+    public class MatchAllStartup : ACFW.Startup.Startup
     {
         protected override IApplicationContext CreateApplicationContext()
         {
