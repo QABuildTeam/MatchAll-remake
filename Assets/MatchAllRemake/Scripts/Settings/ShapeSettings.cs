@@ -9,14 +9,6 @@ namespace MatchAll.Settings
     public class ShapeSettings : ScriptableObject
     {
         [Serializable]
-        public enum ShapeType
-        {
-            None = 0,
-            Square = 1,
-            Triangle = 2,
-            Circle = 3
-        }
-        [Serializable]
         private class ShapeSprite
         {
             public ShapeType type;

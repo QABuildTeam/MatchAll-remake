@@ -1,10 +1,5 @@
-using System;
-using System.Linq;
 using ACFW;
 using ACFW.Controllers;
-using ACFW.Environment;
-using ACFW.Settings;
-using ACFW.Views;
 using System.Threading.Tasks;
 using MatchAll.Views;
 using MatchAll.Environment;

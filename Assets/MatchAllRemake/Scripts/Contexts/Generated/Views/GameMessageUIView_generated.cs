@@ -1,8 +1,11 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 using ACFW.Views;
+using MatchAll.Views;
+using UnityEngine.AddressableAssets;
+using TMPro;
 
 namespace MatchAll.Views
 {
@@ -15,8 +18,8 @@ namespace MatchAll.Views
             set => dialogMessage.Value = value;
         }
         [SerializeField]
-        private SpriteDisplay dialogImage;
-        public Sprite DialogImage
+        private AddressableSpriteDisplay dialogImage;
+        public AssetReference DialogImage
         {
             set => dialogImage.Value = value;
         }
@@ -54,6 +57,7 @@ namespace MatchAll.Views
 
         protected override async Task Done()
         {
+            dialogImage.Dispose();
             dialogButton.onClick.RemoveAllListeners();
 
         }

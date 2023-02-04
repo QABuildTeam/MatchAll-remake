@@ -77,6 +77,26 @@ MonoBehaviour:
     m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Views/GameEndMessageUIView.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: bfddd6820b1ae0049a8bb5485e4c2c9e
+    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/GameBg.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cc93938205b07294a92e9c81262bbe20
+    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Shape.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 134aedf4f63fae2419b7338c34717420
+    m_Address: Assets/MatchAllRemake/ResourceData/Images/BGTile2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f13a109565e7ff14e8d89905674b6117
+    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Views/GameWorldView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0fccf3eb7d2f474b89874ca29b2f4a7
+    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Views/MouseInputWorldView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6008065dd9f8e3e42a886dd7d94cfe7c, type: 2}
   m_SchemaSet:

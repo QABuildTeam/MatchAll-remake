@@ -13,7 +13,7 @@ namespace MatchAll.Controllers
 
         private void OnOpenMainMenu()
         {
-            EventManager.Get<ContextEvents>().ActivateContext?.Invoke(nameof(MainMenuGameContext));
+            EventManager.Get<ContextEvents>().ActivateContext?.Invoke(nameof(MainMenuAppContext));
         }
 
         protected override void Unsubscribe()

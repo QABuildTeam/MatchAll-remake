@@ -1,16 +1,19 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 using ACFW.Views;
+using MatchAll.Views;
+using UnityEngine.AddressableAssets;
+using TMPro;
 
 namespace MatchAll.Views
 {
     public partial class GameScreenUIView : UIView
     {
         [SerializeField]
-        private SpriteDisplay sampleDisplayBackground;
-        public Sprite SampleDisplayBackground
+        private AddressableSpriteDisplay sampleDisplayBackground;
+        public AssetReference SampleDisplayBackground
         {
             set => sampleDisplayBackground.Value = value;
         }
@@ -66,6 +69,7 @@ namespace MatchAll.Views
 
         protected override async Task Done()
         {
+            sampleDisplayBackground.Dispose();
             backButton.onClick.RemoveAllListeners();
 
         }

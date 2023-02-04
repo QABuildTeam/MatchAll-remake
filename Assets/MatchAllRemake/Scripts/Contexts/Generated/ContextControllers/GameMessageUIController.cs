@@ -43,21 +43,14 @@ namespace MatchAll.Controllers
             await GameMessageView.Show(force: true);
         }
 
-        private AssetLoader<Sprite> imageLoader = null;
-        private async void SetHint(int hintOrder)
+        private void SetHint(int hintOrder)
         {
             string message = SettingsManager.Get<GameHintSettings>().MessageText(hintOrder);
             if (!string.IsNullOrEmpty(message))
             {
                 GameMessageView.DialogMessage = message.Replace("\\n", "\n");
             }
-            if (imageLoader != null)
-            {
-                imageLoader.Dispose();
-            }
-            imageLoader = new AssetLoader<Sprite>(SettingsManager.Get<GameHintSettings>().ImageReference(hintOrder));
-            await imageLoader.Load();
-            GameMessageView.DialogImage = imageLoader.Asset;
+            GameMessageView.DialogImage = SettingsManager.Get<GameHintSettings>().ImageReference(hintOrder);
             GameMessageView.DialogButtonLabel = SettingsManager.Get<GameHintSettings>().ButtonText(hintOrder);
         }
 
@@ -97,11 +90,6 @@ namespace MatchAll.Controllers
 
         public override async Task Close()
         {
-            if (imageLoader != null)
-            {
-                imageLoader.Dispose();
-                imageLoader = null;
-            }
             Unsubscribe();
             await base.Close();
         }

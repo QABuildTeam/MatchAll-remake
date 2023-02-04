@@ -53,6 +53,7 @@ namespace MatchAll.Controllers
             MainMenuView.Environment = environment;
             Debug.Log($"Data is {Data}");
             MainMenuView.CurrentPlayerName = Data.PlayerName;
+            MainMenuView.ScoreValue = Data.CurrentScore;
             bool emptyPlayerName = string.IsNullOrEmpty(Data.PlayerName);
             MainMenuView.ActivePlayerName = emptyPlayerName;
             MainMenuView.ActiveCurrentPlayerName = !emptyPlayerName;

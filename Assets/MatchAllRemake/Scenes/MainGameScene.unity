@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contextManager: {fileID: 6045002387276104316, guid: e9a5af7352128484b8089ca7ddf71378, type: 3}
   settings: {fileID: 11400000, guid: 0597e2180d172624fb7f100ad4b55935, type: 2}
-  gameContextList: {fileID: 11400000, guid: e1cfe81c69e5b014f98472c0c0b2f8cb, type: 2}
+  appContextList: {fileID: 11400000, guid: e1cfe81c69e5b014f98472c0c0b2f8cb, type: 2}
 --- !u!4 &1501919192
 Transform:
   m_ObjectHideFlags: 0

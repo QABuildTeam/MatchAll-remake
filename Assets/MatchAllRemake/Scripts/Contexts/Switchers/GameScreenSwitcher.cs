@@ -13,7 +13,7 @@ namespace MatchAll.Controllers
 
         private void OnOpenGameScreen()
         {
-            EventManager.Get<ContextEvents>().ActivateContext?.Invoke(nameof(GameScreenGameContext));
+            EventManager.Get<ContextEvents>().ActivateContext?.Invoke(nameof(GameScreenAppContext));
         }
 
         protected override void Unsubscribe()

@@ -38,21 +38,14 @@ namespace MatchAll.Controllers
             await GameEndMessageView.Show(force: true);
         }
 
-        private AssetLoader<Sprite> imageLoader = null;
-        private async void ShowMessage(GameEndType type)
+        private void ShowMessage(GameEndType type)
         {
             string message = SettingsManager.Get<GameEndMessageSettings>().MessageText(type);
             if (!string.IsNullOrEmpty(message))
             {
                 GameEndMessageView.DialogMessage = message.Replace("\\n", "\n");
             }
-            if (imageLoader != null)
-            {
-                imageLoader.Dispose();
-            }
-            imageLoader = new AssetLoader<Sprite>(SettingsManager.Get<GameEndMessageSettings>().ImageReference(type));
-            await imageLoader.Load();
-            GameEndMessageView.DialogImage = imageLoader.Asset;
+            GameEndMessageView.DialogImage = SettingsManager.Get<GameEndMessageSettings>().ImageReference(type);
             GameEndMessageView.DialogButtonLabel = SettingsManager.Get<GameEndMessageSettings>().ButtonText(type);
         }
 
@@ -78,11 +71,6 @@ namespace MatchAll.Controllers
 
         public override async Task Close()
         {
-            if (imageLoader != null)
-            {
-                imageLoader.Dispose();
-                imageLoader = null;
-            }
             Unsubscribe();
             await base.Close();
         }
