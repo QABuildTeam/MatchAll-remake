@@ -24,5 +24,30 @@ namespace MatchAll.Controllers
                 }
             }
         }
+
+        public ITimer Timer { get; set; } = null;
+        public float RemainingTime
+        {
+            get => (float)Timer?.RemainingTime;
+            set
+            {
+                if (Timer != null)
+                {
+                    Timer.RemainingTime = value;
+                }
+            }
+        }
+
+        public bool IsTimerRun
+        {
+            get => (bool)Timer?.IsTimerRun;
+            set
+            {
+                if (Timer != null)
+                {
+                    Timer.IsTimerRun = value;
+                }
+            }
+        }
     }
 }

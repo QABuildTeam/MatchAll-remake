@@ -97,6 +97,10 @@ MonoBehaviour:
     m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Views/MouseInputWorldView.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c4d0e704f6f401b4b84b57e5226a7424
+    m_Address: Assets/MatchAllRemake/ResourceData/Images/NoneShape.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6008065dd9f8e3e42a886dd7d94cfe7c, type: 2}
   m_SchemaSet:

@@ -34,7 +34,8 @@ namespace MatchAll.Settings
         public int[] ShapeColors => colors.Select(c => c.index).ToArray();
         public Color GetShapeColor(int index)
         {
-            return (Color)(colors.FirstOrDefault(c => c.index == index)?.color);
+            var shapeColor = colors.FirstOrDefault(c => c.index == index);
+            return shapeColor != null ? shapeColor.color : Color.black;
         }
     }
 }

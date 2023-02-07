@@ -31,7 +31,15 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - type: 0
+    spriteReference:
+      m_AssetGUID: c4d0e704f6f401b4b84b57e5226a7424
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   colors:
+  - index: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
   - index: 1
     color: {r: 0.5019608, g: 0, b: 0, a: 1}
   - index: 2

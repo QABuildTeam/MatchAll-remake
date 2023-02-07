@@ -10,28 +10,40 @@ public static class GameComponentsLookup {
 
     public const int Bounds = 0;
     public const int Camera = 1;
-    public const int Color = 2;
-    public const int Position = 3;
-    public const int Shape = 4;
-    public const int Velocity = 5;
+    public const int CameraPosition = 2;
+    public const int Color = 3;
+    public const int RemainingTime = 4;
+    public const int Shape = 5;
+    public const int ShapeSample = 6;
+    public const int Timer = 7;
+    public const int TimerRun = 8;
+    public const int Velocity = 9;
 
-    public const int TotalComponents = 6;
+    public const int TotalComponents = 10;
 
     public static readonly string[] componentNames = {
         "Bounds",
         "Camera",
+        "CameraPosition",
         "Color",
-        "Position",
+        "RemainingTime",
         "Shape",
+        "ShapeSample",
+        "Timer",
+        "TimerRun",
         "Velocity"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(MatchAll.Game.BoundsComponent),
         typeof(MatchAll.Game.CameraComponent),
+        typeof(MatchAll.Game.CameraPositionComponent),
         typeof(MatchAll.Game.ColorComponent),
-        typeof(MatchAll.Game.PositionComponent),
+        typeof(MatchAll.Game.RemainingTimeComponent),
         typeof(MatchAll.Game.ShapeComponent),
+        typeof(MatchAll.Game.ShapeSampleComponent),
+        typeof(MatchAll.Game.TimerComponent),
+        typeof(MatchAll.Game.TimerRunComponent),
         typeof(MatchAll.Game.VelocityComponent)
     };
 }

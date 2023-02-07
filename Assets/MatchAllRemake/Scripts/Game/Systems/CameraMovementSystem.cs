@@ -20,19 +20,19 @@ namespace MatchAll.Game
             context.isCamera = true;
             camera = context.cameraEntity;
             camera.AddVelocity(0, 0);
-            camera.AddPosition(0, 0);
+            camera.AddCameraPosition(0, 0);
             Debug.Log($"Camera is {camera}");
         }
 
         public void Execute()
         {
-            camera.ReplacePosition(camera.position.x + camera.velocity.x, camera.position.y + camera.velocity.y);
+            camera.ReplaceCameraPosition(camera.cameraPosition.x + camera.velocity.x, camera.cameraPosition.y + camera.velocity.y);
             var gameController = environment.Get<IGameManager>();
             if (gameController == null)
             {
                 return;
             }
-            gameController.CameraPosition = new Vector2(camera.position.x, camera.position.y);
+            gameController.CameraPosition = new Vector2(camera.cameraPosition.x, camera.cameraPosition.y);
         }
 
         public void TearDown()

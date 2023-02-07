@@ -17,5 +17,10 @@ namespace MatchAll
         ICameraController CameraController { get; set; }
         // Camera methods
         Vector2 CameraPosition { get; set; }
+
+        // Timer
+        ITimer Timer { get; set; }
+        float RemainingTime { get; set; }
+        bool IsTimerRun { get; set; }
     }
 }

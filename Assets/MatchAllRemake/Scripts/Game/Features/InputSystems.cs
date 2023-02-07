@@ -8,6 +8,7 @@ namespace MatchAll.Game
         public InputSystems(Contexts contexts, UniversalEnvironment environment) : base("Input systems")
         {
             Add(new CommandInputSystem(contexts, environment));
+            Add(new TimerInputSystem(contexts, environment));
         }
     }
 }

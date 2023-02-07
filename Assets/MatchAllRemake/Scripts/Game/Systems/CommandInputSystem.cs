@@ -3,11 +3,13 @@ using ACFW;
 
 namespace MatchAll.Game
 {
-    public class CommandInputSystem : IExecuteSystem
+    public class CommandInputSystem : IInitializeSystem, IExecuteSystem, ITearDownSystem
     {
         private UniversalEnvironment environment;
         private readonly GameContext gameContext;
         private readonly IGroup<GameEntity> shapes;
+        private IGameManager gameManager;
+
         public CommandInputSystem(Contexts contexts, UniversalEnvironment environment)
         {
             this.environment = environment;
@@ -15,13 +17,13 @@ namespace MatchAll.Game
             shapes = gameContext.GetGroup(GameMatcher.AllOf(GameMatcher.Shape, GameMatcher.Bounds));
         }
 
+        public void Initialize()
+        {
+            gameManager = environment.Get<IGameManager>();
+        }
+
         public void Execute()
         {
-            var gameManager = environment.Get<IGameManager>();
-            if (gameManager == null)
-            {
-                return;
-            }
             var camera = gameContext.cameraEntity;
             var velocity = gameManager.CameraMovementVelocity;
             camera.ReplaceVelocity(velocity.x, velocity.y);
@@ -39,6 +41,11 @@ namespace MatchAll.Game
                     }
                 }
             }
+        }
+
+        public void TearDown()
+        {
+            gameManager = null;
         }
     }
 }

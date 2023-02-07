@@ -31,7 +31,7 @@ namespace MatchAll.Controllers
             GameMessageView.DialogAction += OnDialogAction;
             EventManager.Get<GameMessageEvents>().OpenHint += OnOpenHint;
             EventManager.Get<GameMessageEvents>().ShowNextHint += OnShowNextHint;
-            EventManager.Get<GameMessageEvents>().Close += OnClose;
+            EventManager.Get<GameMessageEvents>().CloseHint += OnCloseHint;
         }
 
         private int currentHint = 0;
@@ -62,12 +62,13 @@ namespace MatchAll.Controllers
             }
             else
             {
-                EventManager.Get<GameMessageEvents>().Close?.Invoke();
+                EventManager.Get<GameMessageEvents>().CloseHint?.Invoke();
             }
         }
 
-        private async void OnClose()
+        private async void OnCloseHint()
         {
+            Debug.Log($"Closing hint");
             currentHint = 0;
             await GameMessageView.Hide();
         }
@@ -77,7 +78,7 @@ namespace MatchAll.Controllers
             GameMessageView.DialogAction -= OnDialogAction;
             EventManager.Get<GameMessageEvents>().OpenHint -= OnOpenHint;
             EventManager.Get<GameMessageEvents>().ShowNextHint -= OnShowNextHint;
-            EventManager.Get<GameMessageEvents>().Close -= OnClose;
+            EventManager.Get<GameMessageEvents>().CloseHint -= OnCloseHint;
         }
 
 
