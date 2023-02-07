@@ -2,7 +2,7 @@ using Entitas;
 
 namespace MatchAll.Game
 {
-    [GameLogic]
+    [Game]
     public sealed class ColorComponent : IComponent
     {
         public int colorIndex;

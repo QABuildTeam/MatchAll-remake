@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using ACFW.Views;
-using MatchAll.Views;
 using UnityEngine.AddressableAssets;
-using TMPro;
 
 namespace MatchAll.Views
 {

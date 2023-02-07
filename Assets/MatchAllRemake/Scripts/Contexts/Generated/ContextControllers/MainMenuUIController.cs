@@ -51,7 +51,6 @@ namespace MatchAll.Controllers
         public override async Task Open()
         {
             MainMenuView.Environment = environment;
-            Debug.Log($"Data is {Data}");
             MainMenuView.CurrentPlayerName = Data.PlayerName;
             MainMenuView.ScoreValue = Data.CurrentScore;
             bool emptyPlayerName = string.IsNullOrEmpty(Data.PlayerName);

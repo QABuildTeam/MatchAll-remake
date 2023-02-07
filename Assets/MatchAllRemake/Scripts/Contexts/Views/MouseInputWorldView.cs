@@ -1,16 +1,21 @@
 using UnityEngine;
+using ACFW;
 using ACFW.Views;
 using System.Threading.Tasks;
 using System;
+using MatchAll.Settings;
 
 namespace MatchAll.Views
 {
     public class MouseInputWorldView : WorldView, IPlayerInput
     {
         private Camera worldCamera;
+        private Vector2 screenCenter;
         public override Task PreShow()
         {
             worldCamera = Camera.main;
+            var canvasManager= Environment.Get<IMasterCanvasManager>();
+            screenCenter = new Vector2(canvasManager.ActualScreenWidth, canvasManager.ActualScreenHeight) / 2;
             return Task.CompletedTask;
         }
 
@@ -67,14 +72,31 @@ namespace MatchAll.Views
             }
             if (pointersInfo[0].state == MouseButtonState.Pressed)
             {
+                IsFieldPointed = true;
+                FieldPointer = pointersInfo[0].currentPosition;
                 FieldPointed?.Invoke(worldCamera.ScreenToWorldPoint(pointersInfo[0].currentPosition));
+            }
+            else
+            {
+                IsFieldPointed = false;
             }
         }
 
-        public Vector2 FieldMovingVelocity =>
+        private InputSettings InputSettings => Environment?.Get<UniversalSettingsManager>()?.Get<InputSettings>();
+        private Vector2 CalculateVelocity(Vector2 position)
+        {
+
+            return Vector2.ClampMagnitude((position - screenCenter) * InputSettings.velocityFactor, InputSettings.maxVelocity) * Time.deltaTime;
+        }
+
+        public Vector2 CameraMovementVelocity =>
             worldCamera != null && pointersInfo[1].state == MouseButtonState.Down ?
-            worldCamera.ScreenToWorldPoint(pointersInfo[1].currentPosition) :
+            CalculateVelocity(pointersInfo[0].currentPosition) :
             Vector2.zero;
+
+        public bool IsFieldPointed { get; private set; }
+        public Vector2 FieldPointer { get; private set; }
+
         public event Action<Vector2> FieldPointed;
         public event Action GameStopped;
     }

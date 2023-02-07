@@ -2,7 +2,7 @@ using Entitas;
 
 namespace MatchAll.Game
 {
-    [GameLogic]
+    [Game]
     public sealed class ShapeComponent : IComponent
     {
         public ShapeType shape;
