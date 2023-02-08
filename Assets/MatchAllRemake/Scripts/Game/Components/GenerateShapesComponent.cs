@@ -3,7 +3,7 @@ using Entitas;
 namespace MatchAll.Game
 {
     [Game]
-    public class TimerRunComponent : IComponent
+    public class GenerateShapesComponent : IComponent
     {
     }
 }

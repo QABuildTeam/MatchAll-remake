@@ -40,6 +40,7 @@ namespace MatchAll.Game
         private static Systems CreateSystems(Contexts contexts, UniversalEnvironment environment)
         {
             return new Feature("Systems")
+                .Add(new InitialSystems(contexts, environment))
                 .Add(new ViewSystems(contexts, environment))
                 .Add(new InputSystems(contexts, environment));
         }

@@ -21,7 +21,6 @@ namespace MatchAll.Game
             camera = context.cameraEntity;
             camera.AddVelocity(0, 0);
             camera.AddCameraPosition(0, 0);
-            Debug.Log($"Camera is {camera}");
         }
 
         public void Execute()

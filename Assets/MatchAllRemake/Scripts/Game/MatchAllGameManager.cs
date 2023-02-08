@@ -38,14 +38,34 @@ namespace MatchAll.Controllers
             }
         }
 
-        public bool IsTimerRun
+        public bool IsTimerRunning
         {
-            get => (bool)Timer?.IsTimerRun;
+            get => (bool)Timer?.IsTimerRunning;
             set
             {
                 if (Timer != null)
                 {
-                    Timer.IsTimerRun = value;
+                    Timer.IsTimerRunning = value;
+                }
+            }
+        }
+
+        public IShapeSample ShapeSample { get; set; }
+        public void SetShapeSample(ShapeType shapeType, int colorIndex) => ShapeSample?.SetShapeSample(shapeType, colorIndex);
+
+        public ISessionManager SessionManager { get; set; }
+        public void SessionFail() => SessionManager?.SessionFail();
+        public void SessionWin() => SessionManager?.SessionWin();
+
+        public IScore ScoreManager { get; set; }
+        public int CurrentScore
+        {
+            get => (int)ScoreManager?.CurrentScore;
+            set
+            {
+                if (ScoreManager != null)
+                {
+                    ScoreManager.CurrentScore = value;
                 }
             }
         }

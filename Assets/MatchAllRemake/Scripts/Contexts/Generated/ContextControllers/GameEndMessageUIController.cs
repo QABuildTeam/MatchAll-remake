@@ -21,7 +21,7 @@ namespace MatchAll.Controllers
 
         private void OnDialogAction()
         {
-            EventManager.Get<GameEndMessageEvents>().Close?.Invoke();
+            EventManager.Get<GameEndMessageEvents>().CloseEndMessage?.Invoke();
         }
 
 
@@ -29,7 +29,7 @@ namespace MatchAll.Controllers
         {
             GameEndMessageView.DialogAction += OnDialogAction;
             EventManager.Get<GameEndMessageEvents>().Open += OnOpen;
-            EventManager.Get<GameEndMessageEvents>().Close += OnClose;
+            EventManager.Get<GameEndMessageEvents>().CloseEndMessage += OnClose;
         }
 
         private async void OnOpen(GameEndType type)
@@ -58,7 +58,7 @@ namespace MatchAll.Controllers
         {
             GameEndMessageView.DialogAction -= OnDialogAction;
             EventManager.Get<GameEndMessageEvents>().Open -= OnOpen;
-            EventManager.Get<GameEndMessageEvents>().Close -= OnClose;
+            EventManager.Get<GameEndMessageEvents>().CloseEndMessage -= OnClose;
         }
 
 

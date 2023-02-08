@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly MatchAll.Game.TimerRunComponent timerRunComponent = new MatchAll.Game.TimerRunComponent();
+    static readonly MatchAll.Game.TimerRunningComponent timerRunningComponent = new MatchAll.Game.TimerRunningComponent();
 
-    public bool isTimerRun {
-        get { return HasComponent(GameComponentsLookup.TimerRun); }
+    public bool isTimerRunning {
+        get { return HasComponent(GameComponentsLookup.TimerRunning); }
         set {
-            if (value != isTimerRun) {
-                var index = GameComponentsLookup.TimerRun;
+            if (value != isTimerRunning) {
+                var index = GameComponentsLookup.TimerRunning;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : timerRunComponent;
+                            : timerRunningComponent;
 
                     AddComponent(index, component);
                 } else {
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherTimerRun;
+    static Entitas.IMatcher<GameEntity> _matcherTimerRunning;
 
-    public static Entitas.IMatcher<GameEntity> TimerRun {
+    public static Entitas.IMatcher<GameEntity> TimerRunning {
         get {
-            if (_matcherTimerRun == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.TimerRun);
+            if (_matcherTimerRunning == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.TimerRunning);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherTimerRun = matcher;
+                _matcherTimerRunning = matcher;
             }
 
-            return _matcherTimerRun;
+            return _matcherTimerRunning;
         }
     }
 }

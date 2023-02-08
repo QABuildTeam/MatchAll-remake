@@ -11,7 +11,8 @@ namespace MatchAll.Game
         public ViewSystems(Contexts contexts, UniversalEnvironment environment) : base("View systems")
         {
             Add(new CameraMovementSystem(contexts, environment));
-            Add(new TimerSystem(contexts, environment));
+            Add(new SampleGenerationCooldownSystem(contexts, environment));
+            Add(new ShapeSampleSetupSystem(contexts, environment));
         }
     }
 }

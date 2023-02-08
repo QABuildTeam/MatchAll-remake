@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ACFW;
 using UnityEngine;
-using MatchAll.Environment;
+using MatchAll.Settings;
 
 namespace MatchAll.Game
 {
@@ -13,10 +13,12 @@ namespace MatchAll.Game
         private IGameManager gameManager;
         private readonly GameContext gameContext;
         private GameEntity timer;
+        private readonly float sessionPeriod;
 
         public TimerSystem(Contexts contexts, UniversalEnvironment environment)
         {
             this.environment = environment;
+            sessionPeriod = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>().sessionDuration;
             gameContext = contexts.game;
         }
 
@@ -24,18 +26,20 @@ namespace MatchAll.Game
         {
             gameManager = environment.Get<IGameManager>();
             gameContext.isTimer = true;
+            gameContext.isFinishGame = false;
             timer = gameContext.timerEntity;
-            timer.AddRemainingTime(60);
+            timer.AddRemainingTime(sessionPeriod);
         }
 
         public void Execute()
         {
-            if (timer.isTimerRun)
+            if (timer.isTimerRunning)
             {
                 var newTime = timer.remainingTime.time - Time.deltaTime;
                 if (newTime <= 0)
                 {
                     newTime = 0;
+                    gameContext.isFinishGame = true;
                 }
                 timer.ReplaceRemainingTime(newTime);
                 gameManager.RemainingTime = newTime;

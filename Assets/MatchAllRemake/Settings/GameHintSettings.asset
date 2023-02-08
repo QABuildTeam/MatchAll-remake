@@ -21,8 +21,8 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     buttonText: Next >>>
-  - messageText: 'Scroll the game field simply moving the mouse to the corresponding
-      screen edge!\nWARNING: The game field is infinite!'
+  - messageText: 'Scroll the game field pressing the right mouse button at the corresponding
+      screen area!\nWARNING: The game field is infinite!'
     imageReference:
       m_AssetGUID: 1f5292dbb3021be42ba73b38901b2580
       m_SubObjectName: 

@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textValue: {fileID: 4093261452682621342}
-  format: '{0:#}'
+  format: '{0:0}'
 --- !u!1 &2674051021149544045
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ namespace MatchAll.Game
         public void Execute()
         {
             var timer = gameContext.timerEntity;
-            timer.isTimerRun = gameManager.IsTimerRun;
+            timer.isTimerRunning = gameManager.IsTimerRunning;
         }
 
         public void TearDown()
