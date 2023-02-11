@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideOnOpen: 1
   dialogMessage: {fileID: 2652865209969896595}
-  dialogImage: {fileID: 8587222291507534442}
+  dialogImage: {fileID: 2372143947877520203}
   dialogButton: {fileID: 2340267785638764302}
   dialogButtonLabel: {fileID: 652452765961907193}
 --- !u!1 &3530633426752977562
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 7843642935611983181}
   - component: {fileID: 4370721293561131392}
   - component: {fileID: 4587102932533726853}
-  - component: {fileID: 8587222291507534442}
+  - component: {fileID: 2372143947877520203}
   m_Layer: 0
   m_Name: DialogImage
   m_TagString: Untagged
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8587222291507534442
+--- !u!114 &2372143947877520203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4033028185508419246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca3eb98e21a8d3e4fa242a48ad19870a, type: 3}
+  m_Script: {fileID: 11500000, guid: 21dfbd01616ac1c40a0ed3cac661e037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 4587102932533726853}

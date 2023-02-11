@@ -81,10 +81,6 @@ MonoBehaviour:
     m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/GameBg.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: cc93938205b07294a92e9c81262bbe20
-    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/Shape.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 134aedf4f63fae2419b7338c34717420
     m_Address: Assets/MatchAllRemake/ResourceData/Images/BGTile2.png
     m_ReadOnly: 0
@@ -99,6 +95,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: c4d0e704f6f401b4b84b57e5226a7424
     m_Address: Assets/MatchAllRemake/ResourceData/Images/NoneShape.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2a0d19df6eb3e594fa88a9191aca331b
+    m_Address: Assets/MatchAllRemake/ResourceData/Prefabs/ShapeObject.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

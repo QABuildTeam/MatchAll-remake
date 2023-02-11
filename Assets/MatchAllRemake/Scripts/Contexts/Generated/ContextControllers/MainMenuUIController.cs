@@ -3,6 +3,7 @@ using ACFW.Controllers;
 using System.Threading.Tasks;
 using MatchAll.Views;
 using MatchAll.Environment;
+using MatchAll.Settings;
 using UnityEngine;
 
 namespace MatchAll.Controllers

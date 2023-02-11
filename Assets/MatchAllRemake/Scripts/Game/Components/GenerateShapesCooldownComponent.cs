@@ -1,9 +1,10 @@
 using Entitas;
+using Entitas.CodeGeneration.Attributes;
 
 namespace MatchAll.Game
 {
-    [Game]
-    public class GenerateShapesCooldownComponent : IComponent
+    [Game, Unique]
+    public sealed class GenerateShapesCooldownComponent : IComponent
     {
         public float cooldown;
     }

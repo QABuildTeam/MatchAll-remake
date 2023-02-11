@@ -9,10 +9,11 @@ using UnityEngine;
 
 namespace MatchAll.Controllers
 {
-    public partial class GameEndMessageUIController : ContextController
+    public partial class GameEndMessageUIController : ContextController, ISessionManager
     {
         private UniversalEventManager EventManager => environment.Get<UniversalEventManager>();
         private UniversalSettingsManager SettingsManager => environment.Get<UniversalSettingsManager>();
+        private IGameContainer GameManager => environment.Get<IGameContainer>();
 
         private GameEndMessageUIView GameEndMessageView => (GameEndMessageUIView)view;
         public GameEndMessageUIController(GameEndMessageUIView view, UniversalEnvironment environment) : base(view, environment)
@@ -28,13 +29,20 @@ namespace MatchAll.Controllers
         private void Subscribe()
         {
             GameEndMessageView.DialogAction += OnDialogAction;
-            EventManager.Get<GameEndMessageEvents>().Open += OnOpen;
-            EventManager.Get<GameEndMessageEvents>().CloseEndMessage += OnClose;
+            EventManager.Get<GameEndMessageEvents>().OpenWinMessage += OnOpenWinMessage;
+            EventManager.Get<GameEndMessageEvents>().OpenFailMessage += OnOpenFailMessage;
+            EventManager.Get<GameEndMessageEvents>().CloseEndMessage += OnCloseEndMessage;
         }
 
-        private async void OnOpen(GameEndType type)
+        private async void OnOpenWinMessage()
         {
-            ShowMessage(type);
+            ShowMessage(GameEndType.Win);
+            await GameEndMessageView.Show(force: true);
+        }
+
+        private async void OnOpenFailMessage()
+        {
+            ShowMessage(GameEndType.Fail);
             await GameEndMessageView.Show(force: true);
         }
 
@@ -49,7 +57,7 @@ namespace MatchAll.Controllers
             GameEndMessageView.DialogButtonLabel = SettingsManager.Get<GameEndMessageSettings>().ButtonText(type);
         }
 
-        private async void OnClose()
+        private async void OnCloseEndMessage()
         {
             await GameEndMessageView.Hide();
         }
@@ -57,22 +65,39 @@ namespace MatchAll.Controllers
         private void Unsubscribe()
         {
             GameEndMessageView.DialogAction -= OnDialogAction;
-            EventManager.Get<GameEndMessageEvents>().Open -= OnOpen;
-            EventManager.Get<GameEndMessageEvents>().CloseEndMessage -= OnClose;
+            EventManager.Get<GameEndMessageEvents>().OpenWinMessage -= OnOpenWinMessage;
+            EventManager.Get<GameEndMessageEvents>().OpenFailMessage -= OnOpenFailMessage;
+            EventManager.Get<GameEndMessageEvents>().CloseEndMessage -= OnCloseEndMessage;
         }
 
 
         public override async Task Open()
         {
             Subscribe();
+            GameManager.SessionManager = this;
             GameEndMessageView.Environment = environment;
             await base.Open();
         }
 
         public override async Task Close()
         {
+            GameManager.SessionManager = null;
             Unsubscribe();
             await base.Close();
+        }
+
+        public void StartSession()
+        {
+        }
+
+        public void SessionWin()
+        {
+            EventManager.Get<GameEndMessageEvents>().OpenWinMessage?.Invoke();
+        }
+
+        public void SessionFail()
+        {
+            EventManager.Get<GameEndMessageEvents>().OpenFailMessage?.Invoke();
         }
     }
 }

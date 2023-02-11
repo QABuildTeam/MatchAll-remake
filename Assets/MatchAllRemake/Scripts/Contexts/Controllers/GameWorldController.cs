@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MatchAll.Controllers
 {
-    public class GameWorldController : ContextController
+    public class GameWorldController : ContextController, ICameraController, IShapeObjectsDisplay
     {
         private UniversalEventManager EventManager => environment.Get<UniversalEventManager>();
         private GameWorldView GameView => (GameWorldView)view;
@@ -20,35 +20,42 @@ namespace MatchAll.Controllers
 
         public override async Task Open()
         {
-            await base.Open();
-            var gameManager = environment.Get<IGameManager>();
+            var gameManager = environment.Get<IGameContainer>();
             if (gameManager != null)
             {
-                gameManager.CameraController = GameView;
+                gameManager.CameraController = this;
+                gameManager.ShapesDisplay = this;
             }
+            await base.Open();
+            GameView.GameController.Open(environment);
         }
 
-        public override Task Close()
+        public override async Task Close()
         {
-            var gameManager = environment.Get<IGameManager>();
+            var gameManager = environment.Get<IGameContainer>();
             if (gameManager != null)
             {
                 gameManager.CameraController = null;
+                gameManager.ShapesDisplay = null;
             }
-            return base.Close();
+            GameView.GameController.Close();
+            await base.Close();
         }
 
-        public void AttachObject(GameObject go, Vector3 position)
+        public Vector2 CameraPosition
         {
-            go.transform.SetParent(GameView.WorldTransform);
-            go.transform.position = position;
-            go.SetActive(true);
+            get => (Vector2)GameView?.CameraPosition;
+            set
+            {
+                if (GameView != null)
+                {
+                    GameView.CameraPosition = value;
+                }
+            }
         }
 
-        public void DetachObject(GameObject go)
-        {
-            go.SetActive(false);
-            go.transform.SetParent(null);
-        }
+        public void CreateShapeObject(ShapeType type, int colorIndex, int x, int y)=> GameView.CreateShapeObject(type, colorIndex, x, y);
+
+        public void SetShapeColor(int x, int y, int colorIndex) => GameView.SetShapeColor(x, y, colorIndex);
     }
 }

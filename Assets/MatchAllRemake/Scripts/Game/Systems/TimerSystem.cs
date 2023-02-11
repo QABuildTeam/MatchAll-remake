@@ -1,6 +1,4 @@
 using Entitas;
-using System.Collections;
-using System.Collections.Generic;
 using ACFW;
 using UnityEngine;
 using MatchAll.Settings;
@@ -9,9 +7,9 @@ namespace MatchAll.Game
 {
     public class TimerSystem : IInitializeSystem, IExecuteSystem, ITearDownSystem
     {
-        private readonly UniversalEnvironment environment;
+        private UniversalEnvironment environment;
         private IGameManager gameManager;
-        private readonly GameContext gameContext;
+        private GameContext gameContext;
         private GameEntity timer;
         private readonly float sessionPeriod;
 
@@ -49,6 +47,10 @@ namespace MatchAll.Game
         public void TearDown()
         {
             gameContext.isTimer = false;
+            timer = null;
+            gameManager = null;
+            gameContext = null;
+            environment = null;
         }
     }
 }

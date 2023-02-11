@@ -16,7 +16,7 @@ namespace MatchAll.Views
             set => dialogMessage.Value = value;
         }
         [SerializeField]
-        private AddressableSpriteDisplay dialogImage;
+        private AddressableSpriteUIDisplay dialogImage;
         public AssetReference DialogImage
         {
             set => dialogImage.Value = value;

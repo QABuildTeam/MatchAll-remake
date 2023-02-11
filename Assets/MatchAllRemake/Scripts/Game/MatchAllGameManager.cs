@@ -5,7 +5,7 @@ using ACFW;
 
 namespace MatchAll.Controllers
 {
-    public class MatchAllGameManager : IGameManager, IServiceProvider
+    public class MatchAllGameManager : IGameContainer, IGameManager, IServiceProvider
     {
         public IPlayerInput PlayerInput { get; set; }
         public Vector2 CameraMovementVelocity => PlayerInput != null ? PlayerInput.CameraMovementVelocity : Vector2.zero;
@@ -69,5 +69,9 @@ namespace MatchAll.Controllers
                 }
             }
         }
+
+        public IShapeObjectsDisplay ShapesDisplay { get; set; }
+        public void CreateShapeObject(ShapeType shapeType, int colorIndex, int x, int y) => ShapesDisplay?.CreateShapeObject(shapeType, colorIndex, x, y);
+        public void SetShapeColor(int x, int y, int colorIndex) => ShapesDisplay?.SetShapeColor(x, y, colorIndex);
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace MatchAll.Game
 {
-    public class FinishGameSystem : ReactiveSystem<GameEntity>
+    public class FinishGameSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
         private IGameManager gameManager;
         private GameContext gameContext;
@@ -19,6 +19,13 @@ namespace MatchAll.Game
             winScore = settings.winScore;
             gameContext = contexts.game;
         }
+
+        public void TearDown()
+        {
+            gameManager = null;
+            gameContext = null;
+        }
+
         protected override void Execute(List<GameEntity> entities)
         {
             var score = gameContext.scoreEntity.score.currentScore;

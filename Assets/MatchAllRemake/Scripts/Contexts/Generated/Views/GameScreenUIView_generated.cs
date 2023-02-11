@@ -12,16 +12,10 @@ namespace MatchAll.Views
     public partial class GameScreenUIView : UIView
     {
         [SerializeField]
-        private AddressableSpriteDisplay sampleDisplayBackground;
-        public AssetReference SampleDisplayBackground
+        private ResolvedShapeObjectDisplay sampleDisplayBackground;
+        public ResolvedShapeObject SampleDisplayBackground
         {
             set => sampleDisplayBackground.Value = value;
-        }
-        [SerializeField]
-        private ColorDisplay sampleValue;
-        public Color SampleValue
-        {
-            set => sampleValue.Value = value;
         }
         [SerializeField]
         private PreformattedTextInt scoreValue;

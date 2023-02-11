@@ -22,7 +22,7 @@ namespace MatchAll.Controllers
         public override async Task Open()
         {
             await base.Open();
-            var gameManager = environment.Get<IGameManager>();
+            var gameManager = environment.Get<IGameContainer>();
             if (gameManager != null)
             {
                 gameManager.PlayerInput = InputView;
@@ -31,7 +31,7 @@ namespace MatchAll.Controllers
 
         public override async Task Close()
         {
-            var gameManager = environment.Get<IGameManager>();
+            var gameManager = environment.Get<IGameContainer>();
             if (gameManager != null)
             {
                 gameManager.PlayerInput = null;

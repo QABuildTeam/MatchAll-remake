@@ -11,7 +11,8 @@ namespace MatchAll.Environment
     }
     public class GameEndMessageEvents : IEventProvider
     {
-        public UEvent<GameEndType> Open;
+        public UEvent OpenWinMessage;
+        public UEvent OpenFailMessage;
         public UEvent CloseEndMessage;
     }
 }

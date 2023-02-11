@@ -16,7 +16,6 @@ namespace MatchAll.Game
             systems = CreateSystems(contexts, environment);
             systems.Initialize();
             isOpen = true;
-            Debug.Log($"Created systems {systems}");
         }
 
         void Update()
@@ -33,6 +32,11 @@ namespace MatchAll.Game
         {
             isOpen = false;
             systems.TearDown();
+            systems.DeactivateReactiveSystems();
+            foreach (var context in contexts.allContexts)
+            {
+                context.DestroyAllEntities();
+            }
             contexts = null;
             systems = null;
         }

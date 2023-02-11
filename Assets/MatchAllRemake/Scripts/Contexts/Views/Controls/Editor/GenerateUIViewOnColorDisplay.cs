@@ -6,7 +6,7 @@ using MatchAll.Views;
 namespace MatchAll.Editor
 {
     [AppContextGenerationUtility.CodeGeneration]
-    public class GenerateUIViewOnColorDisplay : AppContextGenerationUtility.GenerateUIViewOnIValueDisplay<ColorDisplay, Color>
+    public class GenerateUIViewOnColorDisplay : AppContextGenerationUtility.GenerateUIViewOnIValueDisplay<SpriteColorDisplay, Color>
     {
         protected override List<string> UsingClauses => new List<string> { "MatchAll.Views", "UnityEngine" };
     }

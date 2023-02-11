@@ -64,3 +64,8 @@ MonoBehaviour:
     color: {r: 1, g: 0, b: 1, a: 1}
   - index: 12
     color: {r: 0, g: 1, b: 1, a: 1}
+  shapeObjectPrefab:
+    m_AssetGUID: 2a0d19df6eb3e594fa88a9191aca331b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

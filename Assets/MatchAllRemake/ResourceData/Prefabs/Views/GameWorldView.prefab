@@ -125,6 +125,7 @@ MonoBehaviour:
   worldTransform: {fileID: 3503874179837874041}
   background: {fileID: 9012921064270648338}
   gameController: {fileID: 1672912137825346315}
+  rootTransform: {fileID: 4232004914620086019}
 --- !u!1 &3175792085539786689
 GameObject:
   m_ObjectHideFlags: 0

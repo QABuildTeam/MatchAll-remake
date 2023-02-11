@@ -1,8 +1,4 @@
-using Entitas;
 using ACFW;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace MatchAll.Game
 {
@@ -12,7 +8,9 @@ namespace MatchAll.Game
         {
             Add(new CameraMovementSystem(contexts, environment));
             Add(new SampleGenerationCooldownSystem(contexts, environment));
-            Add(new ShapeSampleSetupSystem(contexts, environment));
+            Add(new SampleSetupSystem(contexts, environment));
+            Add(new ShapesGenerationCooldownSystem(contexts, environment));
+            Add(new ShapeSetupSystem(contexts, environment));
         }
     }
 }

@@ -26,16 +26,27 @@ namespace MatchAll.Settings
         [SerializeField]
         private ShapeColor[] colors;
 
-        public ShapeType[] ShapeTypes => Enum.GetValues(typeof(ShapeType)) as ShapeType[];
+        private ShapeType[] shapeTypes;
+        public ShapeType[] ShapeTypes => (shapeTypes == null || shapeTypes.Length == 0) ? (shapeTypes = sprites.Select(s => s.type).ToArray()) : shapeTypes;
+        private ShapeType[] availableShapeTypes;
+        public ShapeType[] AvailableShapeTypes => (availableShapeTypes == null || availableShapeTypes.Length == 0) ? (availableShapeTypes = ShapeTypes.Where(t => t != ShapeType.None).ToArray()) : availableShapeTypes;
         public AssetReference GetShapeSpriteReference(ShapeType type)
         {
             return sprites.FirstOrDefault(s => s.type == type)?.spriteReference;
         }
-        public int[] ShapeColors => colors.Select(c => c.index).ToArray();
+
+        private int[] shapeColors;
+        public int[] ShapeColors => (shapeColors == null || shapeColors.Length == 0) ? (shapeColors = colors.Select(c => c.index).ToArray()) : shapeColors;
+        private int[] availableShapeColors;
+        public int[] AvailableShapeColors => (availableShapeColors == null || availableShapeColors.Length == 0) ? (availableShapeColors = ShapeColors.Where(c => c != 0).ToArray()) : availableShapeColors;
         public Color GetShapeColor(int index)
         {
             var shapeColor = colors.FirstOrDefault(c => c.index == index);
-            return shapeColor != null ? shapeColor.color : Color.black;
+            return shapeColor != null ? shapeColor.color : Color.clear;
         }
+
+        [SerializeField]
+        private AssetReference shapeObjectPrefab;
+        public AssetReference ShapeObjectPrefab => shapeObjectPrefab;
     }
 }

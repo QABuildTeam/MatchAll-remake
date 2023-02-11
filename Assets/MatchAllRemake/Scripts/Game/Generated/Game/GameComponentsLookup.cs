@@ -8,55 +8,58 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Bounds = 0;
-    public const int Camera = 1;
-    public const int CameraPosition = 2;
-    public const int Color = 3;
-    public const int FinishGame = 4;
-    public const int GenerateShapes = 5;
-    public const int GenerateShapesCooldown = 6;
-    public const int RemainingTime = 7;
-    public const int Score = 8;
-    public const int Shape = 9;
-    public const int ShapeSample = 10;
-    public const int ShapeSampleCooldown = 11;
-    public const int Timer = 12;
-    public const int TimerRunning = 13;
-    public const int Velocity = 14;
+    public const int Camera = 0;
+    public const int CameraPosition = 1;
+    public const int Color = 2;
+    public const int FinishGame = 3;
+    public const int GenerateSample = 4;
+    public const int GenerateSampleCooldown = 5;
+    public const int GenerateShapes = 6;
+    public const int GenerateShapesCooldown = 7;
+    public const int RemainingTime = 8;
+    public const int Score = 9;
+    public const int Shape = 10;
+    public const int ShapePosition = 11;
+    public const int ShapeSample = 12;
+    public const int Timer = 13;
+    public const int TimerRunning = 14;
+    public const int Velocity = 15;
 
-    public const int TotalComponents = 15;
+    public const int TotalComponents = 16;
 
     public static readonly string[] componentNames = {
-        "Bounds",
         "Camera",
         "CameraPosition",
         "Color",
         "FinishGame",
+        "GenerateSample",
+        "GenerateSampleCooldown",
         "GenerateShapes",
         "GenerateShapesCooldown",
         "RemainingTime",
         "Score",
         "Shape",
+        "ShapePosition",
         "ShapeSample",
-        "ShapeSampleCooldown",
         "Timer",
         "TimerRunning",
         "Velocity"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(MatchAll.Game.BoundsComponent),
         typeof(MatchAll.Game.CameraComponent),
         typeof(MatchAll.Game.CameraPositionComponent),
         typeof(MatchAll.Game.ColorComponent),
         typeof(MatchAll.Game.FinishGameComponent),
+        typeof(MatchAll.Game.GenerateSampleComponent),
+        typeof(MatchAll.Game.GenerateSampleCooldownComponent),
         typeof(MatchAll.Game.GenerateShapesComponent),
         typeof(MatchAll.Game.GenerateShapesCooldownComponent),
         typeof(MatchAll.Game.RemainingTimeComponent),
         typeof(MatchAll.Game.ScoreComponent),
         typeof(MatchAll.Game.ShapeComponent),
+        typeof(MatchAll.Game.ShapePositionComponent),
         typeof(MatchAll.Game.ShapeSampleComponent),
-        typeof(MatchAll.Game.ShapeSampleCooldownComponent),
         typeof(MatchAll.Game.TimerComponent),
         typeof(MatchAll.Game.TimerRunningComponent),
         typeof(MatchAll.Game.VelocityComponent)

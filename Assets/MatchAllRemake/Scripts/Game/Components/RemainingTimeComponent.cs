@@ -3,7 +3,7 @@ using Entitas;
 namespace MatchAll.Game
 {
     [Game]
-    public class RemainingTimeComponent : IComponent
+    public sealed class RemainingTimeComponent : IComponent
     {
         public float time;
     }

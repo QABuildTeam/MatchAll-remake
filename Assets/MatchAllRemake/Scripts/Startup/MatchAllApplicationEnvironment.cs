@@ -17,7 +17,9 @@ namespace MatchAll.Startup
         {
             base.InitializeGlobals();
             Environment.Add<IData>(new DataController());
-            Environment.Add<IGameManager>(new MatchAllGameManager());
+            var gameManager = new MatchAllGameManager();
+            Environment.Add<IGameContainer>(gameManager);
+            Environment.Add<IGameManager>(gameManager);
         }
 
         public override void Run()

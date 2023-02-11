@@ -1,9 +1,10 @@
 using Entitas;
+using Entitas.CodeGeneration.Attributes;
 
 namespace MatchAll.Game
 {
-    [Game]
-    public class GenerateShapesComponent : IComponent
+    [Game, Unique]
+    public sealed class GenerateShapesComponent : IComponent
     {
     }
 }

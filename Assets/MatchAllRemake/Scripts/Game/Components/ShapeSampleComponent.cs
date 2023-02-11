@@ -4,7 +4,7 @@ using Entitas.CodeGeneration.Attributes;
 namespace MatchAll.Game
 {
     [Game, Unique]
-    public class ShapeSampleComponent : IComponent
+    public sealed class ShapeSampleComponent : IComponent
     {
     }
 }

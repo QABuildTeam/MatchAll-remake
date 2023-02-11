@@ -68,7 +68,6 @@ namespace MatchAll.Controllers
 
         private async void OnCloseHint()
         {
-            Debug.Log($"Closing hint");
             currentHint = 0;
             await GameMessageView.Hide();
         }

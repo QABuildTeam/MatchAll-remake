@@ -45,7 +45,7 @@ namespace MatchAll.Views
                 Vector3 relocator = new Vector3(dx * tileStep, dy * tileStep, 0);
                 for (int i = 0; i < bgTiles.Length; ++i)
                 {
-                    bgTiles[i].position += relocator;
+                    bgTiles[i].localPosition += relocator;
                 }
             }
         }
