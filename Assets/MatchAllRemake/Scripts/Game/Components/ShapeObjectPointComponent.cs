@@ -3,10 +3,9 @@ using Entitas.CodeGeneration.Attributes;
 
 namespace MatchAll.Game
 {
-    [Game]
-    public sealed class ShapePositionComponent : IComponent
+    [Game, Unique]
+    public sealed class ShapeObjectPointComponent : IComponent
     {
-        [EntityIndex]
         public V2IntPosition position;
     }
 }

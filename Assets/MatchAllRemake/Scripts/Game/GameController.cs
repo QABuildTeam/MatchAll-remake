@@ -45,8 +45,9 @@ namespace MatchAll.Game
         {
             return new Feature("Systems")
                 .Add(new InitialSystems(contexts, environment))
-                .Add(new ViewSystems(contexts, environment))
-                .Add(new InputSystems(contexts, environment));
+                .Add(new InputSystems(contexts, environment))
+                .Add(new LogicSystems(contexts, environment))
+                .Add(new RenderSystems(contexts, environment));
         }
     }
 }

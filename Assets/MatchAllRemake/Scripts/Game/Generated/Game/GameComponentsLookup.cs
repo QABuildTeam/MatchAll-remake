@@ -16,16 +16,19 @@ public static class GameComponentsLookup {
     public const int GenerateSampleCooldown = 5;
     public const int GenerateShapes = 6;
     public const int GenerateShapesCooldown = 7;
-    public const int RemainingTime = 8;
-    public const int Score = 9;
-    public const int Shape = 10;
-    public const int ShapePosition = 11;
-    public const int ShapeSample = 12;
-    public const int Timer = 13;
-    public const int TimerRunning = 14;
-    public const int Velocity = 15;
+    public const int NewShapeObject = 8;
+    public const int RemainingTime = 9;
+    public const int Score = 10;
+    public const int ScoreDelta = 11;
+    public const int Shape = 12;
+    public const int ShapeObjectPoint = 13;
+    public const int ShapePosition = 14;
+    public const int ShapeSample = 15;
+    public const int Timer = 16;
+    public const int TimerRunning = 17;
+    public const int Velocity = 18;
 
-    public const int TotalComponents = 16;
+    public const int TotalComponents = 19;
 
     public static readonly string[] componentNames = {
         "Camera",
@@ -36,9 +39,12 @@ public static class GameComponentsLookup {
         "GenerateSampleCooldown",
         "GenerateShapes",
         "GenerateShapesCooldown",
+        "NewShapeObject",
         "RemainingTime",
         "Score",
+        "ScoreDelta",
         "Shape",
+        "ShapeObjectPoint",
         "ShapePosition",
         "ShapeSample",
         "Timer",
@@ -55,9 +61,12 @@ public static class GameComponentsLookup {
         typeof(MatchAll.Game.GenerateSampleCooldownComponent),
         typeof(MatchAll.Game.GenerateShapesComponent),
         typeof(MatchAll.Game.GenerateShapesCooldownComponent),
+        typeof(MatchAll.Game.NewShapeObjectComponent),
         typeof(MatchAll.Game.RemainingTimeComponent),
         typeof(MatchAll.Game.ScoreComponent),
+        typeof(MatchAll.Game.ScoreDeltaComponent),
         typeof(MatchAll.Game.ShapeComponent),
+        typeof(MatchAll.Game.ShapeObjectPointComponent),
         typeof(MatchAll.Game.ShapePositionComponent),
         typeof(MatchAll.Game.ShapeSampleComponent),
         typeof(MatchAll.Game.TimerComponent),

@@ -6,31 +6,49 @@ using MatchAll.Settings;
 
 namespace MatchAll.Game
 {
-    public class ShapeSetupSystem : ReactiveSystem<GameEntity>, IInitializeSystem, ITearDownSystem
+    public class ShapeSetupSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
         private struct Vector2Int
         {
-            public float x;
-            public float y;
+            public int x;
+            public int y;
         }
         private List<Vector2Int> emptySpaces;
-        private UniversalEnvironment environment;
+
         private int totalMaxObjectsCount;
         private int typeMaxObjectCount;
         private int objectGenRate;
         private ShapeType[] availableShapes;
         private int[] availableColors;
-        private IGameManager gameManager;
         private GameContext gameContext;
         private IGroup<GameEntity> shapeObjects;
-        private int totalSlotsCount;
 
         public ShapeSetupSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
         {
-            this.environment = environment;
-            gameManager = environment.Get<IGameManager>();
             gameContext = contexts.game;
             shapeObjects = gameContext.GetGroup(GameMatcher.ShapePosition);
+
+            var settingsManager = environment.Get<UniversalSettingsManager>();
+            var sessionSettings = settingsManager.Get<GameSessionSettings>();
+            totalMaxObjectsCount = sessionSettings.totalMaxObjectCount;
+            typeMaxObjectCount = sessionSettings.typeMaxObjectCount;
+            objectGenRate = sessionSettings.objectGenRate;
+
+            var shapeSettings = settingsManager.Get<ShapeSettings>();
+            availableShapes = shapeSettings.AvailableShapeTypes;
+            availableColors = shapeSettings.AvailableShapeColors;
+
+            var xIntCount = (int)(sessionSettings.areaWidth / sessionSettings.objectSlotStep) + 1;
+            var yIntCount = (int)(sessionSettings.areaHeight / sessionSettings.objectSlotStep) + 1;
+            emptySpaces = new List<Vector2Int>(xIntCount * yIntCount);
+            V2IntPosition position = new V2IntPosition { x = 0, y = 0 };
+            for (position.y = 0; position.y < yIntCount; ++position.y)
+            {
+                for (position.x = 0; position.x<xIntCount; ++position.x)
+                {
+                    emptySpaces.Add(new Vector2Int { x = position.x, y = position.y });
+                }
+            }
         }
 
         private (bool, Vector2Int) GetEmptySpace()
@@ -44,6 +62,7 @@ namespace MatchAll.Game
             }
             return (false, new Vector2Int { x = 0, y = 0 });
         }
+
         protected override void Execute(List<GameEntity> entities)
         {
             var r = new Random();
@@ -61,8 +80,8 @@ namespace MatchAll.Game
                         var shape = gameContext.CreateEntity();
                         shape.AddShape(type);
                         shape.AddColor(color);
-                        shape.AddShapePosition((int)emptySpace.x, (int)emptySpace.y);
-                        gameManager.CreateShapeObject(type, color, (int)emptySpace.x, (int)emptySpace.y);
+                        shape.AddShapePosition(new V2IntPosition { x = emptySpace.x, y = emptySpace.y });
+                        shape.isNewShapeObject = true;
                     }
                 }
             }
@@ -78,43 +97,14 @@ namespace MatchAll.Game
             return context.CreateCollector(GameMatcher.GenerateShapes);
         }
 
-        public void Initialize()
-        {
-            var settingsManager = environment.Get<UniversalSettingsManager>();
-            var sessionSettings = settingsManager.Get<GameSessionSettings>();
-            totalMaxObjectsCount = sessionSettings.totalMaxObjectCount;
-            typeMaxObjectCount = sessionSettings.typeMaxObjectCount;
-            objectGenRate = sessionSettings.objectGenRate;
-            totalSlotsCount = ((int)(sessionSettings.areaWidth / sessionSettings.objectSlotStep) + 1) * ((int)(sessionSettings.areaHeight / sessionSettings.objectSlotStep) + 1);
-            emptySpaces = new List<Vector2Int>(totalSlotsCount);
-            for (float y = sessionSettings.areaYMin, h = 0; h <= sessionSettings.areaHeight; y += sessionSettings.objectSlotStep, h += sessionSettings.objectSlotStep)
-            {
-                for (float x = sessionSettings.areaXMin, w = 0; w < sessionSettings.areaWidth; x += sessionSettings.objectSlotStep, w += sessionSettings.objectSlotStep)
-                {
-                    emptySpaces.Add(new Vector2Int { x = x, y = y });
-                }
-            }
-            var shapeSettings = settingsManager.Get<ShapeSettings>();
-            availableShapes = shapeSettings.AvailableShapeTypes;
-            availableColors = shapeSettings.AvailableShapeColors;
-        }
-
         public void TearDown()
         {
-            /*
-            foreach (var entity in shapeObjects.GetEntities())
-            {
-                entity.Destroy();
-            }
-            */
             emptySpaces.Clear();
             emptySpaces = null;
             availableShapes = null;
             availableColors = null;
-            gameManager = null;
             gameContext = null;
             shapeObjects = null;
-            environment = null;
         }
     }
 }

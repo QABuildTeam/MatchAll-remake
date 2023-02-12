@@ -95,11 +95,13 @@ namespace MatchAll.Views
             if (!exists)
             {
                 ShapeSettings shapeSettings = Environment.Get<UniversalSettingsManager>().Get<ShapeSettings>();
+                GameSessionSettings sessionSettings = Environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>();
                 var resolvedShapeObject = ShapeObjectHelper.Resolve(new ShapeObject { shapeType = type, colorIndex = colorIndex }, shapeSettings);
                 var loader = new ObjectLoader<ResolvedShapeObjectDisplay>(shapeSettings.ShapeObjectPrefab, rootTransform);
                 if (await loader.Load() != null)
                 {
-                    loader.LoadedObject.transform.localPosition = new Vector3(x, y, 0);
+                    var worldPosition = ShapeObjectCellHelper.GetShapeObjectPosition(new V2IntPosition { x = x, y = y }, sessionSettings.areaXMin, sessionSettings.areaYMin, sessionSettings.objectSlotStep);
+                    loader.LoadedObject.transform.localPosition = new Vector3(worldPosition.x, worldPosition.y, 0);
                     loader.Component.Value = resolvedShapeObject;
                     lock (_sync)
                     {

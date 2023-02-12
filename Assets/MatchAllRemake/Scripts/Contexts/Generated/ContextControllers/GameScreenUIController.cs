@@ -36,6 +36,18 @@ namespace MatchAll.Controllers
             GameScreenView.BackAction += OnBackAction;
             EventManager.Get<GameMessageEvents>().CloseHint += OnCloseHint;
             EventManager.Get<GameEndMessageEvents>().CloseEndMessage += OnCloseEndMessage;
+            EventManager.Get<GameEndMessageEvents>().OpenWinMessage += OnOpenWinMessage;
+            EventManager.Get<GameEndMessageEvents>().OpenFailMessage += OnOpenFailMessage;
+        }
+
+        private void OnOpenWinMessage()
+        {
+            IsTimerRunning = false;
+        }
+
+        private void OnOpenFailMessage()
+        {
+            IsTimerRunning = false;
         }
 
         private void OnCloseEndMessage()
@@ -53,6 +65,8 @@ namespace MatchAll.Controllers
             GameScreenView.BackAction -= OnBackAction;
             EventManager.Get<GameMessageEvents>().CloseHint -= OnCloseHint;
             EventManager.Get<GameEndMessageEvents>().CloseEndMessage -= OnCloseEndMessage;
+            EventManager.Get<GameEndMessageEvents>().OpenWinMessage -= OnOpenWinMessage;
+            EventManager.Get<GameEndMessageEvents>().OpenFailMessage -= OnOpenFailMessage;
         }
 
 

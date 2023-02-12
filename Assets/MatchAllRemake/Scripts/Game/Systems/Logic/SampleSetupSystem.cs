@@ -6,23 +6,22 @@ using System.Collections.Generic;
 
 namespace MatchAll.Game
 {
-    public class SampleSetupSystem : ReactiveSystem<GameEntity>, IInitializeSystem, ITearDownSystem
+    public class SampleSetupSystem : ReactiveSystem<GameEntity>
     {
-        private UniversalEnvironment environment;
-        private IGameManager gameManager;
+        private GameContext gameContext;
         private ShapeType[] availableShapeTypes;
         private int[] availableShapeColors;
+        private int sampleChangedPenalty;
         public SampleSetupSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
         {
-            this.environment = environment;
-            gameManager = environment.Get<IGameManager>();
-        }
-
-        public void Initialize()
-        {
-            var shapeSettings = environment.Get<UniversalSettingsManager>().Get<ShapeSettings>();
+            var settingsManager = environment.Get<UniversalSettingsManager>();
+            var shapeSettings = settingsManager.Get<ShapeSettings>();
             availableShapeTypes = shapeSettings.AvailableShapeTypes;
             availableShapeColors = shapeSettings.AvailableShapeColors;
+            var sessionSettings = settingsManager.Get<GameSessionSettings>();
+            sampleChangedPenalty = sessionSettings.sampleChangedPenalty;
+
+            gameContext = contexts.game;
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -34,7 +33,8 @@ namespace MatchAll.Game
             {
                 entity.ReplaceShape(shapeType);
                 entity.ReplaceColor(colorIndex);
-                gameManager.SetShapeSample(shapeType, colorIndex);
+                var scoreDelta = gameContext.CreateEntity();
+                scoreDelta.AddScoreDelta(-sampleChangedPenalty);
             }
         }
 
@@ -46,11 +46,6 @@ namespace MatchAll.Game
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.GenerateSample);
-        }
-
-        public void TearDown()
-        {
-            gameManager = null;
         }
     }
 }

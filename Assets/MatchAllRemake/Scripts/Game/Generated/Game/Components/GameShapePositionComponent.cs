@@ -11,19 +11,17 @@ public partial class GameEntity {
     public MatchAll.Game.ShapePositionComponent shapePosition { get { return (MatchAll.Game.ShapePositionComponent)GetComponent(GameComponentsLookup.ShapePosition); } }
     public bool hasShapePosition { get { return HasComponent(GameComponentsLookup.ShapePosition); } }
 
-    public void AddShapePosition(int newX, int newY) {
+    public void AddShapePosition(MatchAll.Game.V2IntPosition newPosition) {
         var index = GameComponentsLookup.ShapePosition;
         var component = (MatchAll.Game.ShapePositionComponent)CreateComponent(index, typeof(MatchAll.Game.ShapePositionComponent));
-        component.x = newX;
-        component.y = newY;
+        component.position = newPosition;
         AddComponent(index, component);
     }
 
-    public void ReplaceShapePosition(int newX, int newY) {
+    public void ReplaceShapePosition(MatchAll.Game.V2IntPosition newPosition) {
         var index = GameComponentsLookup.ShapePosition;
         var component = (MatchAll.Game.ShapePositionComponent)CreateComponent(index, typeof(MatchAll.Game.ShapePositionComponent));
-        component.x = newX;
-        component.y = newY;
+        component.position = newPosition;
         ReplaceComponent(index, component);
     }
 

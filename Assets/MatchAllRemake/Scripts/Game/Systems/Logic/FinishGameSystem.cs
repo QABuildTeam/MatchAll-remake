@@ -1,9 +1,7 @@
 using Entitas;
 using ACFW;
 using MatchAll.Settings;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MatchAll.Game
 {

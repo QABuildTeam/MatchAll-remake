@@ -73,8 +73,8 @@ namespace MatchAll.Views
             if (pointersInfo[0].state == MouseButtonState.Pressed)
             {
                 IsFieldPointed = true;
-                FieldPointer = pointersInfo[0].currentPosition;
-                FieldPointed?.Invoke(worldCamera.ScreenToWorldPoint(pointersInfo[0].currentPosition));
+                FieldPointer = worldCamera.ScreenToWorldPoint(pointersInfo[0].currentPosition);
+                FieldPointed?.Invoke(FieldPointer);
             }
             else
             {
@@ -85,7 +85,6 @@ namespace MatchAll.Views
         private InputSettings InputSettings => Environment?.Get<UniversalSettingsManager>()?.Get<InputSettings>();
         private Vector2 CalculateVelocity(Vector2 position)
         {
-
             return Vector2.ClampMagnitude((position - screenCenter) * InputSettings.velocityFactor, InputSettings.maxVelocity) * Time.deltaTime;
         }
 
