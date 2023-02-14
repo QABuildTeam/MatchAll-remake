@@ -13,6 +13,9 @@ namespace MatchAll.Game
             Add(new ShapesGenerationCooldownSystem(contexts, environment));
             Add(new ShapeSetupSystem(contexts, environment));
             Add(new ShapeObjectHitSystem(contexts, environment));
+            Add(new RemoveObjectsOfColorAndTypeSystem(contexts, environment));
+            Add(new RepaintNeighboursSystem(contexts, environment));
+            Add(new RepaintObjectsOfColorAndTypeSystem(contexts, environment));
             Add(new ScoreManagementSystem(contexts, environment));
             Add(new FinishGameSystem(contexts, environment));
         }

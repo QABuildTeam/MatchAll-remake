@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_5_3_OR_NEWER
 using UnityEngine;
+#endif
 
 namespace MatchAll
 {
@@ -16,14 +18,15 @@ namespace MatchAll
         float RemainingTime { get; set; }
         bool IsTimerRunning { get; set; }
         // Shape sample
-        void SetShapeSample(ShapeType shapeType, int colorIndex);
+        void SetShapeSample(ShapeDefinition shapeDefinition);
         // Finish game
         void SessionWin();
         void SessionFail();
         // Score
         int CurrentScore { get; set; }
         // Shapes display
-        void CreateShapeObject(ShapeType shapeType, int colorIndex, int x, int y);
-        void SetShapeColor(int x, int y, int colorIndex);
+        void CreateShapeObject(ShapeDefinition shapeDefinition, Vector2Int position);
+        void SetShapeColor(Vector2Int position, int colorIndex);
+        void DestroyShapeObject(Vector2Int position);
     }
 }

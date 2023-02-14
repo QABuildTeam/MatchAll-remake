@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+#if UNITY_5_3_OR_NEWER
 using UnityEngine;
+#endif
 using ACFW;
 
 namespace MatchAll.Controllers
@@ -51,7 +51,7 @@ namespace MatchAll.Controllers
         }
 
         public IShapeSample ShapeSample { get; set; }
-        public void SetShapeSample(ShapeType shapeType, int colorIndex) => ShapeSample?.SetShapeSample(shapeType, colorIndex);
+        public void SetShapeSample(ShapeDefinition shapeDefinition) => ShapeSample?.SetShapeSample(shapeDefinition);
 
         public ISessionManager SessionManager { get; set; }
         public void SessionFail() => SessionManager?.SessionFail();
@@ -71,7 +71,8 @@ namespace MatchAll.Controllers
         }
 
         public IShapeObjectsDisplay ShapesDisplay { get; set; }
-        public void CreateShapeObject(ShapeType shapeType, int colorIndex, int x, int y) => ShapesDisplay?.CreateShapeObject(shapeType, colorIndex, x, y);
-        public void SetShapeColor(int x, int y, int colorIndex) => ShapesDisplay?.SetShapeColor(x, y, colorIndex);
+        public void CreateShapeObject(ShapeDefinition shapeDefinition, Vector2Int position) => ShapesDisplay?.CreateShapeObject(shapeDefinition, position);
+        public void SetShapeColor(Vector2Int position, int colorIndex) => ShapesDisplay?.SetShapeColor(position, colorIndex);
+        public void DestroyShapeObject(Vector2Int position) => ShapesDisplay?.DestroyShapeObject(position);
     }
 }

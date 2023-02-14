@@ -40,5 +40,7 @@ namespace MatchAll.Settings
         public float areaHeight = 40;
         [Tooltip("Shape slots step (v- or h-wise)")]
         public float objectSlotStep = 1;
+        [Header("Neighbours")]
+        public int neighbourDistance = 2;
     }
 }

@@ -22,15 +22,13 @@ namespace MatchAll.Views
         private Camera worldCamera;
 
         private object _sync = new object();
-        private List<ObjectLoader<ResolvedShapeObjectDisplay>> shapeObjects = new List<ObjectLoader<ResolvedShapeObjectDisplay>>();
-        private Dictionary<Vector2Int, ResolvedShapeObjectDisplay> objectIndex = new Dictionary<Vector2Int, ResolvedShapeObjectDisplay>();
+        private Dictionary<Vector2Int, ObjectLoader<ResolvedShapeObjectDisplay>> objectIndex = new Dictionary<Vector2Int, ObjectLoader<ResolvedShapeObjectDisplay>>();
         public override Task PreShow()
         {
             worldCamera = Camera.main;
             worldCamera.transform.position = new Vector3(0, 0, worldCamera.transform.position.z);
             lock (_sync)
             {
-                shapeObjects.Clear();
                 objectIndex.Clear();
             }
             return Task.CompletedTask;
@@ -38,15 +36,14 @@ namespace MatchAll.Views
 
         public override Task PostHide()
         {
-            foreach (var shapeObject in shapeObjects)
+            foreach (var loader in objectIndex.Values)
             {
-                shapeObject.Component.Dispose();
-                shapeObject.Dispose();
+                loader.Component.Dispose();
+                loader.Dispose();
             }
             lock (_sync)
             {
                 objectIndex.Clear();
-                shapeObjects.Clear();
             }
             worldCamera.transform.position = new Vector3(0, 0, worldCamera.transform.position.z);
             worldCamera = null;
@@ -84,9 +81,8 @@ namespace MatchAll.Views
 
         public GameController GameController => gameController;
 
-        public async void CreateShapeObject(ShapeType type, int colorIndex, int x, int y)
+        public async void CreateShapeObject(ShapeDefinition shapeDefinition, Vector2Int position)
         {
-            var position = new Vector2Int(x, y);
             bool exists;
             lock (_sync)
             {
@@ -96,17 +92,16 @@ namespace MatchAll.Views
             {
                 ShapeSettings shapeSettings = Environment.Get<UniversalSettingsManager>().Get<ShapeSettings>();
                 GameSessionSettings sessionSettings = Environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>();
-                var resolvedShapeObject = ShapeObjectHelper.Resolve(new ShapeObject { shapeType = type, colorIndex = colorIndex }, shapeSettings);
+                var resolvedShapeObject = ShapeObjectHelper.Resolve(shapeDefinition, shapeSettings);
                 var loader = new ObjectLoader<ResolvedShapeObjectDisplay>(shapeSettings.ShapeObjectPrefab, rootTransform);
                 if (await loader.Load() != null)
                 {
-                    var worldPosition = ShapeObjectCellHelper.GetShapeObjectPosition(new V2IntPosition { x = x, y = y }, sessionSettings.areaXMin, sessionSettings.areaYMin, sessionSettings.objectSlotStep);
+                    var worldPosition = ShapeObjectCellHelper.GetShapeObjectPosition(position, sessionSettings.areaXMin, sessionSettings.areaYMin, sessionSettings.objectSlotStep);
                     loader.LoadedObject.transform.localPosition = new Vector3(worldPosition.x, worldPosition.y, 0);
                     loader.Component.Value = resolvedShapeObject;
                     lock (_sync)
                     {
-                        shapeObjects.Add(loader);
-                        objectIndex.Add(position, loader.Component);
+                        objectIndex.Add(position, loader);
                     }
                 }
                 else
@@ -116,17 +111,36 @@ namespace MatchAll.Views
             }
         }
 
-        public void SetShapeColor(int x, int y, int colorIndex)
+        public void SetShapeColor(Vector2Int position, int colorIndex)
         {
-            ResolvedShapeObjectDisplay shapeObjectDisplay;
+            ObjectLoader<ResolvedShapeObjectDisplay> loader;
             bool exists;
             lock (_sync)
             {
-                exists = objectIndex.TryGetValue(new Vector2Int(x, y), out shapeObjectDisplay);
+                exists = objectIndex.TryGetValue(position, out loader);
             }
             if (exists)
             {
-                shapeObjectDisplay.Color = Environment.Get<UniversalSettingsManager>().Get<ShapeSettings>().GetShapeColor(colorIndex);
+                loader.Component.Color = Environment.Get<UniversalSettingsManager>().Get<ShapeSettings>().GetShapeColor(colorIndex);
+            }
+        }
+
+        public void DestroyShapeObject(Vector2Int position)
+        {
+            ObjectLoader<ResolvedShapeObjectDisplay> loader;
+            bool exists;
+            lock (_sync)
+            {
+                exists = objectIndex.TryGetValue(position, out loader);
+            }
+            if (exists)
+            {
+                loader.Component.Dispose();
+                loader.Dispose();
+                lock (_sync)
+                {
+                    objectIndex.Remove(position);
+                }
             }
         }
     }

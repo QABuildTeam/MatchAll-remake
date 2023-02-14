@@ -1,6 +1,9 @@
 using Entitas;
 using ACFW;
 using MatchAll.Settings;
+#if UNITY_5_3_OR_NEWER
+using UnityEngine;
+#endif
 
 namespace MatchAll.Game
 {
@@ -28,12 +31,11 @@ namespace MatchAll.Game
             {
                 var cameraEntity = gameContext.cameraEntity;
                 var velocity = gameManager.CameraMovementVelocity;
-                cameraEntity.ReplaceVelocity(velocity.x, velocity.y);
+                cameraEntity.ReplaceVelocity(velocity);
                 if (gameManager.IsFieldPointed == true)
                 {
-                    var fieldPosition = gameManager.FieldPointer;
-                    var position = ShapeObjectCellHelper.GetShapeObjectIndex(fieldPosition.x, fieldPosition.y, areaXMin, areaYMin, objectSlotStep);
-                    UnityEngine.Debug.Log($"Pointing at ({fieldPosition.x},{fieldPosition.y}), cameraPosition=({cameraEntity.cameraPosition.x},{cameraEntity.cameraPosition.y}), index ({position.x},{position.y})");
+                    var position = ShapeObjectCellHelper.GetShapeObjectIndex(gameManager.FieldPointer, areaXMin, areaYMin, objectSlotStep);
+                    UnityEngine.Debug.Log($"Pointing at ({gameManager.FieldPointer.x},{gameManager.FieldPointer.y}), cameraPosition=({cameraEntity.cameraPosition.position.x},{cameraEntity.cameraPosition.position.y}), index ({position.x},{position.y})");
                     gameContext.SetShapeObjectPoint(position);
                 }
             }

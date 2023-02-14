@@ -78,7 +78,7 @@ namespace MatchAll.Controllers
             GameContainer.ShapeSample = this;
             GameContainer.ScoreManager = this;
             GameScreenView.Environment = environment;
-            SetShapeSample(ShapeType.None, 0);
+            SetShapeSample(new ShapeDefinition { shapeType = ShapeType.None, colorIndex = 0 });
             GameScreenView.PlayerNameValue = Data.PlayerName;
             await base.Open();
             Subscribe();
@@ -107,9 +107,9 @@ namespace MatchAll.Controllers
             await base.Close();
         }
 
-        public void SetShapeSample(ShapeType type, int colorIndex)
+        public void SetShapeSample(ShapeDefinition shapeDefinition)
         {
-            GameScreenView.SampleDisplayBackground = ShapeObjectHelper.Resolve(new ShapeObject { shapeType = type, colorIndex = colorIndex }, ShapeSettings);
+            GameScreenView.SampleDisplayBackground = ShapeObjectHelper.Resolve(shapeDefinition, ShapeSettings);
         }
 
         private float remainingTime = 0;

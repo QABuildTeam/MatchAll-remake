@@ -23,26 +23,26 @@ namespace MatchAll.Game
             var shapeSampleEntity = gameContext.shapeSampleEntity;
             foreach (var entity in entities)
             {
-                UnityEngine.Debug.Log($"Checking pointer at ({entity.shapeObjectPoint.position.x},{entity.shapeObjectPoint.position.y})");
                 var targets = gameContext.GetEntitiesWithShapePosition(entity.shapeObjectPoint.position);
-                UnityEngine.Debug.Log($"Found {targets.Count} entities at ({entity.shapeObjectPoint.position.x},{entity.shapeObjectPoint.position.y})");
                 if (targets.Count == 1)
                 {
                     foreach (var target in targets)
                     {
-                        if (target.hasShapePosition && target.hasShape && target.hasColor)
+                        if (target.hasShapePosition && target.hasShapeDefinition)
                         {
-                            UnityEngine.Debug.Log($"Pointed to entity at ({target.shapePosition.position.x},{target.shapePosition.position.y})");
                             var scoreDelta = gameContext.CreateEntity();
-                            if (target.shape.shape == shapeSampleEntity.shape.shape && target.color.colorIndex == shapeSampleEntity.color.colorIndex)
+                            if (target.shapeDefinition.definition == shapeSampleEntity.shapeDefinition.definition)
                             {
-                                UnityEngine.Debug.Log($"Entity matches: ({target.shape.shape},{target.color.colorIndex})");
+                                UnityEngine.Debug.Log($"Entity matches: ({target.shapeDefinition.definition.shapeType},{target.shapeDefinition.definition.colorIndex})");
                                 scoreDelta.AddScoreDelta(matchScoreBonus);
+                                gameContext.SetRemoveTypeAndColor(target.shapeDefinition.definition);
+                                gameContext.SetRepaintNeightbours(target.shapePosition.position, target.shapeDefinition.definition.colorIndex);
                             }
                             else
                             {
-                                UnityEngine.Debug.Log($"Entity does not match: ({target.shape.shape},{target.color.colorIndex})");
+                                UnityEngine.Debug.Log($"Entity does not match: ({target.shapeDefinition.definition.shapeType},{target.shapeDefinition.definition.colorIndex})");
                                 scoreDelta.AddScoreDelta(-mismatchScorePenalty);
+                                gameContext.SetRepaintTypeAndColor(target.shapeDefinition.definition);
                             }
                         }
                     }

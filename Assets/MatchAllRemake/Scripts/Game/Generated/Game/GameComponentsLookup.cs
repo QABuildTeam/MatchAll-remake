@@ -11,39 +11,51 @@ public static class GameComponentsLookup {
     public const int Camera = 0;
     public const int CameraPosition = 1;
     public const int Color = 2;
-    public const int FinishGame = 3;
-    public const int GenerateSample = 4;
-    public const int GenerateSampleCooldown = 5;
-    public const int GenerateShapes = 6;
-    public const int GenerateShapesCooldown = 7;
-    public const int NewShapeObject = 8;
-    public const int RemainingTime = 9;
-    public const int Score = 10;
-    public const int ScoreDelta = 11;
-    public const int Shape = 12;
-    public const int ShapeObjectPoint = 13;
-    public const int ShapePosition = 14;
-    public const int ShapeSample = 15;
-    public const int Timer = 16;
-    public const int TimerRunning = 17;
-    public const int Velocity = 18;
+    public const int CreateShapeObject = 3;
+    public const int DestroyShapeObject = 4;
+    public const int FinishGame = 5;
+    public const int GenerateSample = 6;
+    public const int GenerateSampleCooldown = 7;
+    public const int GenerateShapes = 8;
+    public const int GenerateShapesCooldown = 9;
+    public const int RemainingTime = 10;
+    public const int RemoveTypeAndColor = 11;
+    public const int RepaintNeightbours = 12;
+    public const int RepaintTypeAndColor = 13;
+    public const int Score = 14;
+    public const int ScoreDelta = 15;
+    public const int SetShapeColor = 16;
+    public const int Shape = 17;
+    public const int ShapeDefinition = 18;
+    public const int ShapeObjectPoint = 19;
+    public const int ShapePosition = 20;
+    public const int ShapeSample = 21;
+    public const int Timer = 22;
+    public const int TimerRunning = 23;
+    public const int Velocity = 24;
 
-    public const int TotalComponents = 19;
+    public const int TotalComponents = 25;
 
     public static readonly string[] componentNames = {
         "Camera",
         "CameraPosition",
         "Color",
+        "CreateShapeObject",
+        "DestroyShapeObject",
         "FinishGame",
         "GenerateSample",
         "GenerateSampleCooldown",
         "GenerateShapes",
         "GenerateShapesCooldown",
-        "NewShapeObject",
         "RemainingTime",
+        "RemoveTypeAndColor",
+        "RepaintNeightbours",
+        "RepaintTypeAndColor",
         "Score",
         "ScoreDelta",
+        "SetShapeColor",
         "Shape",
+        "ShapeDefinition",
         "ShapeObjectPoint",
         "ShapePosition",
         "ShapeSample",
@@ -56,16 +68,22 @@ public static class GameComponentsLookup {
         typeof(MatchAll.Game.CameraComponent),
         typeof(MatchAll.Game.CameraPositionComponent),
         typeof(MatchAll.Game.ColorComponent),
+        typeof(MatchAll.Game.CreateShapeObjectComponent),
+        typeof(MatchAll.Game.DestroyShapeObjectComponent),
         typeof(MatchAll.Game.FinishGameComponent),
         typeof(MatchAll.Game.GenerateSampleComponent),
         typeof(MatchAll.Game.GenerateSampleCooldownComponent),
         typeof(MatchAll.Game.GenerateShapesComponent),
         typeof(MatchAll.Game.GenerateShapesCooldownComponent),
-        typeof(MatchAll.Game.NewShapeObjectComponent),
         typeof(MatchAll.Game.RemainingTimeComponent),
+        typeof(MatchAll.Game.RemoveTypeAndColorComponent),
+        typeof(MatchAll.Game.RepaintNeightboursComponent),
+        typeof(MatchAll.Game.RepaintTypeAndColorComponent),
         typeof(MatchAll.Game.ScoreComponent),
         typeof(MatchAll.Game.ScoreDeltaComponent),
+        typeof(MatchAll.Game.SetShapeColorComponent),
         typeof(MatchAll.Game.ShapeComponent),
+        typeof(MatchAll.Game.ShapeDefinitionComponent),
         typeof(MatchAll.Game.ShapeObjectPointComponent),
         typeof(MatchAll.Game.ShapePositionComponent),
         typeof(MatchAll.Game.ShapeSampleComponent),

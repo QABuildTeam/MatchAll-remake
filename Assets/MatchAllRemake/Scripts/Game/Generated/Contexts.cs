@@ -58,11 +58,17 @@ public partial class Contexts : Entitas.IContexts {
 //------------------------------------------------------------------------------
 public partial class Contexts {
 
+    public const string ShapeDefinition = "ShapeDefinition";
     public const string ShapePosition = "ShapePosition";
 
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeEntityIndices() {
-        game.AddEntityIndex(new Entitas.EntityIndex<GameEntity, MatchAll.Game.V2IntPosition>(
+        game.AddEntityIndex(new Entitas.EntityIndex<GameEntity, MatchAll.ShapeDefinition>(
+            ShapeDefinition,
+            game.GetGroup(GameMatcher.ShapeDefinition),
+            (e, c) => ((MatchAll.Game.ShapeDefinitionComponent)c).definition));
+
+        game.AddEntityIndex(new Entitas.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
             ShapePosition,
             game.GetGroup(GameMatcher.ShapePosition),
             (e, c) => ((MatchAll.Game.ShapePositionComponent)c).position));
@@ -71,8 +77,12 @@ public partial class Contexts {
 
 public static class ContextsExtensions {
 
-    public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithShapePosition(this GameContext context, MatchAll.Game.V2IntPosition position) {
-        return ((Entitas.EntityIndex<GameEntity, MatchAll.Game.V2IntPosition>)context.GetEntityIndex(Contexts.ShapePosition)).GetEntities(position);
+    public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithShapeDefinition(this GameContext context, MatchAll.ShapeDefinition definition) {
+        return ((Entitas.EntityIndex<GameEntity, MatchAll.ShapeDefinition>)context.GetEntityIndex(Contexts.ShapeDefinition)).GetEntities(definition);
+    }
+
+    public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithShapePosition(this GameContext context, UnityEngine.Vector2Int position) {
+        return ((Entitas.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.ShapePosition)).GetEntities(position);
     }
 }
 //------------------------------------------------------------------------------

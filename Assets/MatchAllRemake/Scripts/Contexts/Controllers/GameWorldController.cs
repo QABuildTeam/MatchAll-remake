@@ -54,8 +54,10 @@ namespace MatchAll.Controllers
             }
         }
 
-        public void CreateShapeObject(ShapeType type, int colorIndex, int x, int y)=> GameView.CreateShapeObject(type, colorIndex, x, y);
+        public void CreateShapeObject(ShapeDefinition shapeDefinition, Vector2Int position) => GameView?.CreateShapeObject(shapeDefinition, position);
 
-        public void SetShapeColor(int x, int y, int colorIndex) => GameView.SetShapeColor(x, y, colorIndex);
+        public void SetShapeColor(Vector2Int position, int colorIndex) => GameView?.SetShapeColor(position, colorIndex);
+
+        public void DestroyShapeObject(Vector2Int position) => GameView?.DestroyShapeObject(position);
     }
 }

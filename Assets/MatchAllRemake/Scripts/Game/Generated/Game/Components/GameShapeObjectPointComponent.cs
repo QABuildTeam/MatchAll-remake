@@ -12,7 +12,7 @@ public partial class GameContext {
     public MatchAll.Game.ShapeObjectPointComponent shapeObjectPoint { get { return shapeObjectPointEntity.shapeObjectPoint; } }
     public bool hasShapeObjectPoint { get { return shapeObjectPointEntity != null; } }
 
-    public GameEntity SetShapeObjectPoint(MatchAll.Game.V2IntPosition newPosition) {
+    public GameEntity SetShapeObjectPoint(UnityEngine.Vector2Int newPosition) {
         if (hasShapeObjectPoint) {
             throw new Entitas.EntitasException("Could not set ShapeObjectPoint!\n" + this + " already has an entity with MatchAll.Game.ShapeObjectPointComponent!",
                 "You should check if the context already has a shapeObjectPointEntity before setting it or use context.ReplaceShapeObjectPoint().");
@@ -22,7 +22,7 @@ public partial class GameContext {
         return entity;
     }
 
-    public void ReplaceShapeObjectPoint(MatchAll.Game.V2IntPosition newPosition) {
+    public void ReplaceShapeObjectPoint(UnityEngine.Vector2Int newPosition) {
         var entity = shapeObjectPointEntity;
         if (entity == null) {
             entity = SetShapeObjectPoint(newPosition);
@@ -49,14 +49,14 @@ public partial class GameEntity {
     public MatchAll.Game.ShapeObjectPointComponent shapeObjectPoint { get { return (MatchAll.Game.ShapeObjectPointComponent)GetComponent(GameComponentsLookup.ShapeObjectPoint); } }
     public bool hasShapeObjectPoint { get { return HasComponent(GameComponentsLookup.ShapeObjectPoint); } }
 
-    public void AddShapeObjectPoint(MatchAll.Game.V2IntPosition newPosition) {
+    public void AddShapeObjectPoint(UnityEngine.Vector2Int newPosition) {
         var index = GameComponentsLookup.ShapeObjectPoint;
         var component = (MatchAll.Game.ShapeObjectPointComponent)CreateComponent(index, typeof(MatchAll.Game.ShapeObjectPointComponent));
         component.position = newPosition;
         AddComponent(index, component);
     }
 
-    public void ReplaceShapeObjectPoint(MatchAll.Game.V2IntPosition newPosition) {
+    public void ReplaceShapeObjectPoint(UnityEngine.Vector2Int newPosition) {
         var index = GameComponentsLookup.ShapeObjectPoint;
         var component = (MatchAll.Game.ShapeObjectPointComponent)CreateComponent(index, typeof(MatchAll.Game.ShapeObjectPointComponent));
         component.position = newPosition;

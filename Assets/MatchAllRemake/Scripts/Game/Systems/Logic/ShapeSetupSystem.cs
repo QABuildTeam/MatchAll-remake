@@ -3,16 +3,14 @@ using Entitas;
 using ACFW;
 using System.Collections.Generic;
 using MatchAll.Settings;
+#if UNITY_5_3_OR_NEWER
+using UnityEngine;
+#endif
 
 namespace MatchAll.Game
 {
     public class ShapeSetupSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
-        private struct Vector2Int
-        {
-            public int x;
-            public int y;
-        }
         private List<Vector2Int> emptySpaces;
 
         private int totalMaxObjectsCount;
@@ -41,12 +39,12 @@ namespace MatchAll.Game
             var xIntCount = (int)(sessionSettings.areaWidth / sessionSettings.objectSlotStep) + 1;
             var yIntCount = (int)(sessionSettings.areaHeight / sessionSettings.objectSlotStep) + 1;
             emptySpaces = new List<Vector2Int>(xIntCount * yIntCount);
-            V2IntPosition position = new V2IntPosition { x = 0, y = 0 };
+            var position = new Vector2Int { x = 0, y = 0 };
             for (position.y = 0; position.y < yIntCount; ++position.y)
             {
                 for (position.x = 0; position.x<xIntCount; ++position.x)
                 {
-                    emptySpaces.Add(new Vector2Int { x = position.x, y = position.y });
+                    emptySpaces.Add(position);
                 }
             }
         }
@@ -65,7 +63,7 @@ namespace MatchAll.Game
 
         protected override void Execute(List<GameEntity> entities)
         {
-            var r = new Random();
+            var r = new System.Random();
             foreach (var entity in entities)
             {
                 var totalObjectsCount = shapeObjects.count;
@@ -78,10 +76,9 @@ namespace MatchAll.Game
                         var color = availableColors[r.Next(0, availableColors.Length)];
                         var type = availableShapes[r.Next(0, availableShapes.Length)];
                         var shape = gameContext.CreateEntity();
-                        shape.AddShape(type);
-                        shape.AddColor(color);
-                        shape.AddShapePosition(new V2IntPosition { x = emptySpace.x, y = emptySpace.y });
-                        shape.isNewShapeObject = true;
+                        shape.AddShapeDefinition(new ShapeDefinition { shapeType = type, colorIndex = color });
+                        shape.AddShapePosition(new Vector2Int { x = emptySpace.x, y = emptySpace.y });
+                        shape.isCreateShapeObject = true;
                     }
                 }
             }

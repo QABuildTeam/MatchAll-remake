@@ -11,19 +11,17 @@ public partial class GameEntity {
     public MatchAll.Game.CameraPositionComponent cameraPosition { get { return (MatchAll.Game.CameraPositionComponent)GetComponent(GameComponentsLookup.CameraPosition); } }
     public bool hasCameraPosition { get { return HasComponent(GameComponentsLookup.CameraPosition); } }
 
-    public void AddCameraPosition(float newX, float newY) {
+    public void AddCameraPosition(UnityEngine.Vector2 newPosition) {
         var index = GameComponentsLookup.CameraPosition;
         var component = (MatchAll.Game.CameraPositionComponent)CreateComponent(index, typeof(MatchAll.Game.CameraPositionComponent));
-        component.x = newX;
-        component.y = newY;
+        component.position = newPosition;
         AddComponent(index, component);
     }
 
-    public void ReplaceCameraPosition(float newX, float newY) {
+    public void ReplaceCameraPosition(UnityEngine.Vector2 newPosition) {
         var index = GameComponentsLookup.CameraPosition;
         var component = (MatchAll.Game.CameraPositionComponent)CreateComponent(index, typeof(MatchAll.Game.CameraPositionComponent));
-        component.x = newX;
-        component.y = newY;
+        component.position = newPosition;
         ReplaceComponent(index, component);
     }
 

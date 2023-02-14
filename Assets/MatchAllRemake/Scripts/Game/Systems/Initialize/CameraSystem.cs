@@ -1,6 +1,8 @@
 using Entitas;
 using ACFW;
+#if UNITY_5_3_OR_NEWER
 using UnityEngine;
+#endif
 
 namespace MatchAll.Game
 {
@@ -15,8 +17,8 @@ namespace MatchAll.Game
         public void Initialize()
         {
             gameContext.isCamera = true;
-            gameContext.cameraEntity.AddVelocity(0, 0);
-            gameContext.cameraEntity.AddCameraPosition(0, 0);
+            gameContext.cameraEntity.AddVelocity(Vector2.zero);
+            gameContext.cameraEntity.AddCameraPosition(Vector2.zero);
         }
         public void TearDown()
         {

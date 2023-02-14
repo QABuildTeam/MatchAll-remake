@@ -16,13 +16,13 @@ namespace MatchAll.Game
         {
             foreach (var entity in entities)
             {
-                gameManager.SetShapeSample(entity.shape.shape, entity.color.colorIndex);
+                gameManager.SetShapeSample(entity.shapeDefinition.definition);
             }
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isGenerateSample && entity.hasShape && entity.hasColor;
+            return entity.isGenerateSample && entity.hasShapeDefinition;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)

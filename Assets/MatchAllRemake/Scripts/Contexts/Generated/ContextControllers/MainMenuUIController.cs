@@ -53,7 +53,7 @@ namespace MatchAll.Controllers
         {
             MainMenuView.Environment = environment;
             MainMenuView.CurrentPlayerName = Data.PlayerName;
-            MainMenuView.ScoreValue = Data.CurrentScore;
+            MainMenuView.ScoreValue = Data.MaxScore;
             bool emptyPlayerName = string.IsNullOrEmpty(Data.PlayerName);
             MainMenuView.ActivePlayerName = emptyPlayerName;
             MainMenuView.ActiveCurrentPlayerName = !emptyPlayerName;

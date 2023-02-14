@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly MatchAll.Game.NewShapeObjectComponent newShapeObjectComponent = new MatchAll.Game.NewShapeObjectComponent();
+    static readonly MatchAll.Game.CreateShapeObjectComponent createShapeObjectComponent = new MatchAll.Game.CreateShapeObjectComponent();
 
-    public bool isNewShapeObject {
-        get { return HasComponent(GameComponentsLookup.NewShapeObject); }
+    public bool isCreateShapeObject {
+        get { return HasComponent(GameComponentsLookup.CreateShapeObject); }
         set {
-            if (value != isNewShapeObject) {
-                var index = GameComponentsLookup.NewShapeObject;
+            if (value != isCreateShapeObject) {
+                var index = GameComponentsLookup.CreateShapeObject;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : newShapeObjectComponent;
+                            : createShapeObjectComponent;
 
                     AddComponent(index, component);
                 } else {
@@ -40,17 +40,17 @@ public partial class GameEntity {
 //------------------------------------------------------------------------------
 public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherNewShapeObject;
+    static Entitas.IMatcher<GameEntity> _matcherCreateShapeObject;
 
-    public static Entitas.IMatcher<GameEntity> NewShapeObject {
+    public static Entitas.IMatcher<GameEntity> CreateShapeObject {
         get {
-            if (_matcherNewShapeObject == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.NewShapeObject);
+            if (_matcherCreateShapeObject == null) {
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.CreateShapeObject);
                 matcher.componentNames = GameComponentsLookup.componentNames;
-                _matcherNewShapeObject = matcher;
+                _matcherCreateShapeObject = matcher;
             }
 
-            return _matcherNewShapeObject;
+            return _matcherCreateShapeObject;
         }
     }
 }

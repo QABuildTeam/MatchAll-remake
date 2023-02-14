@@ -1,5 +1,8 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
+#if UNITY_5_3_OR_NEWER
+using UnityEngine;
+#endif
 
 namespace MatchAll.Game
 {
@@ -7,6 +10,6 @@ namespace MatchAll.Game
     public sealed class ShapePositionComponent : IComponent
     {
         [EntityIndex]
-        public V2IntPosition position;
+        public Vector2Int position;
     }
 }

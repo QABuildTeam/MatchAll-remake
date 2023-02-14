@@ -31,8 +31,7 @@ namespace MatchAll.Game
             int colorIndex = availableShapeColors[r.Next(0, availableShapeColors.Length)];
             foreach (var entity in entities)
             {
-                entity.ReplaceShape(shapeType);
-                entity.ReplaceColor(colorIndex);
+                entity.ReplaceShapeDefinition(new ShapeDefinition { shapeType = shapeType, colorIndex = colorIndex });
                 var scoreDelta = gameContext.CreateEntity();
                 scoreDelta.AddScoreDelta(-sampleChangedPenalty);
             }
@@ -40,7 +39,7 @@ namespace MatchAll.Game
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isGenerateSample && entity.hasShape && entity.hasColor;
+            return entity.isGenerateSample && entity.hasShapeDefinition;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)

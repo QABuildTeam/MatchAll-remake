@@ -4,7 +4,7 @@ namespace MatchAll.Views
 {
     public static class ShapeObjectHelper
     {
-        public static ResolvedShapeObject Resolve(ShapeObject shapeObject, ShapeSettings settings)
+        public static ResolvedShapeObject Resolve(ShapeDefinition shapeObject, ShapeSettings settings)
         {
             var reference = settings.GetShapeSpriteReference(shapeObject.shapeType);
             var color = settings.GetShapeColor(shapeObject.colorIndex);
