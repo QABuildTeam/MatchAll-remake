@@ -12,10 +12,10 @@ namespace MatchAll.Game
     {
         private GameContext gameContext;
         private int neighbourDistance;
-        public RepaintNeighboursSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public RepaintNeighboursSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
-            neighbourDistance = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>().neighbourDistance;
+            neighbourDistance = environment.Get<ISettingsManager>().Get<GameSessionSettings>().neighbourDistance;
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -32,7 +32,7 @@ namespace MatchAll.Game
                     {
                         foreach (var entity in gameContext.GetEntitiesWithShapePosition(position))
                         {
-                            entity.ReplaceShapeDefinition(new ShapeDefinition { shapeType = entity.shapeDefinition.ShapeType, colorIndex = repaint.repaintNeightbours.colorIndex });
+                            entity.SetShapeColor(repaint.repaintNeightbours.colorIndex);
                             entity.isSetShapeColor = true;
                         }
                     }

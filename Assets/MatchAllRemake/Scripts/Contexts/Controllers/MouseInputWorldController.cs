@@ -11,11 +11,11 @@ namespace MatchAll.Controllers
 {
     public class MouseInputWorldController : ContextController
     {
-        private UniversalEventManager EventManager => environment.Get<UniversalEventManager>();
-        private UniversalSettingsManager SettingsManager => environment.Get<UniversalSettingsManager>();
+        private IEventManager EventManager => environment.Get<IEventManager>();
+        private ISettingsManager SettingsManager => environment.Get<ISettingsManager>();
 
         private MouseInputWorldView InputView => (MouseInputWorldView)view;
-        public MouseInputWorldController(MouseInputWorldView view, UniversalEnvironment environment) : base(view, environment)
+        public MouseInputWorldController(MouseInputWorldView view, IServiceLocator environment) : base(view, environment)
         {
         }
 

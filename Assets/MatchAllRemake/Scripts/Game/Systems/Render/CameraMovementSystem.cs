@@ -5,9 +5,9 @@ namespace MatchAll.Game
 {
     public class CameraMovementSystem : IExecuteSystem
     {
-        private UniversalEnvironment environment;
+        private IServiceLocator environment;
         private readonly GameContext gameContext;
-        public CameraMovementSystem(Contexts contexts, UniversalEnvironment environment)
+        public CameraMovementSystem(Contexts contexts, IServiceLocator environment)
         {
             this.environment = environment;
             gameContext = contexts.game;

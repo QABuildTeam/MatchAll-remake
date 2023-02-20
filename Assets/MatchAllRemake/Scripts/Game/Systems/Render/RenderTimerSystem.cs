@@ -10,7 +10,7 @@ namespace MatchAll.Game
         private IGameManager gameManager;
         private GameContext gameContext;
 
-        public RenderTimerSystem(Contexts contexts, UniversalEnvironment environment)
+        public RenderTimerSystem(Contexts contexts, IServiceLocator environment)
         {
             gameManager = environment.Get<IGameManager>();
             gameContext = contexts.game;

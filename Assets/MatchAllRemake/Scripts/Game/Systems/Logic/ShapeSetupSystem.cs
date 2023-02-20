@@ -21,12 +21,12 @@ namespace MatchAll.Game
         private GameContext gameContext;
         private IGroup<GameEntity> shapeObjects;
 
-        public ShapeSetupSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public ShapeSetupSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
             shapeObjects = gameContext.GetGroup(GameMatcher.ShapePosition);
 
-            var settingsManager = environment.Get<UniversalSettingsManager>();
+            var settingsManager = environment.Get<ISettingsManager>();
             var sessionSettings = settingsManager.Get<GameSessionSettings>();
             totalMaxObjectsCount = sessionSettings.totalMaxObjectCount;
             typeMaxObjectCount = sessionSettings.typeMaxObjectCount;

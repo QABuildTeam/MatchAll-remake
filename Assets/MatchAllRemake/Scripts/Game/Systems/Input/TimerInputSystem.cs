@@ -5,11 +5,11 @@ namespace MatchAll.Game
 {
     public class TimerInputSystem : IInitializeSystem, IExecuteSystem, ITearDownSystem
     {
-        private UniversalEnvironment environment;
+        private IServiceLocator environment;
         private readonly GameContext gameContext;
         private IGameManager gameManager;
 
-        public TimerInputSystem(Contexts contexts, UniversalEnvironment environment)
+        public TimerInputSystem(Contexts contexts, IServiceLocator environment)
         {
             this.environment = environment;
             gameContext = contexts.game;

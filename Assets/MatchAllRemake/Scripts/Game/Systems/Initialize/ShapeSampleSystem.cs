@@ -6,7 +6,7 @@ namespace MatchAll.Game
     public class ShapeSampleSystem : IInitializeSystem
     {
         private readonly GameContext gameContext;
-        public ShapeSampleSystem(Contexts contexts, UniversalEnvironment environment)
+        public ShapeSampleSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
         }

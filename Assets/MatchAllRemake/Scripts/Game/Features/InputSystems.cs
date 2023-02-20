@@ -8,7 +8,7 @@ namespace MatchAll.Game
 {
     public class InputSystems : Feature
     {
-        public InputSystems(Contexts contexts, UniversalEnvironment environment) : base("Input systems")
+        public InputSystems(Contexts contexts, IServiceLocator environment) : base("Input systems")
         {
             Add(new TimerInputSystem(contexts, environment));
             Add(new CommandInputSystem(contexts, environment));

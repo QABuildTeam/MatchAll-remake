@@ -2,12 +2,13 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using ACFW.Settings;
 using MatchAll.Environment;
 
 namespace MatchAll.Settings
 {
     [CreateAssetMenu(fileName = "GameEndMessageSettings", menuName = "Game Settings/Game End Message Settings")]
-    public class GameEndMessageSettings : ScriptableObject
+    public class GameEndMessageSettings : ScriptableSettings
     {
         [Serializable]
         private class MessageDescriptor

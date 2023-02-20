@@ -2,6 +2,7 @@ using Entitas;
 using ACFW;
 using MatchAll.Settings;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace MatchAll.Game
 {
@@ -10,9 +11,9 @@ namespace MatchAll.Game
         private IGameManager gameManager;
         private GameContext gameContext;
         private int winScore;
-        public FinishGameSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public FinishGameSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
-            var settings = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>();
+            var settings = environment.Get<ISettingsManager>().Get<GameSessionSettings>();
             gameManager = environment.Get<IGameManager>();
             winScore = settings.winScore;
             gameContext = contexts.game;

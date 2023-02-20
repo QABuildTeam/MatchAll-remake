@@ -4,16 +4,14 @@ using System.Threading.Tasks;
 using MatchAll.Views;
 using MatchAll.Environment;
 using MatchAll.Settings;
-using UnityEngine;
-using System;
 
 namespace MatchAll.Controllers
 {
-    public partial class GameScreenUIController : ContextController, ITimer, IShapeSample, IScore
+    public partial class GameScreenUIController : ContextController, ITimer, IShapeSample, IScore, ISessionManager
     {
 
-        private UniversalEventManager EventManager => environment.Get<UniversalEventManager>();
-        private UniversalSettingsManager SettingsManager => environment.Get<UniversalSettingsManager>();
+        private IEventManager EventManager => environment.Get<IEventManager>();
+        private ISettingsManager SettingsManager => environment.Get<ISettingsManager>();
         private IData Data => environment.Get<IData>();
         private ShapeSettings ShapeSettings => SettingsManager.Get<ShapeSettings>();
 
@@ -21,7 +19,7 @@ namespace MatchAll.Controllers
 
         private GameScreenUIView GameScreenView => (GameScreenUIView)view;
 
-        public GameScreenUIController(GameScreenUIView view, UniversalEnvironment environment) : base(view, environment)
+        public GameScreenUIController(GameScreenUIView view, IServiceLocator environment) : base(view, environment)
         {
         }
 
@@ -77,6 +75,7 @@ namespace MatchAll.Controllers
             GameContainer.Timer = this;
             GameContainer.ShapeSample = this;
             GameContainer.ScoreManager = this;
+            GameContainer.SessionManager = this;
             GameScreenView.Environment = environment;
             SetShapeSample(new ShapeDefinition { shapeType = ShapeType.None, colorIndex = 0 });
             GameScreenView.PlayerNameValue = Data.PlayerName;
@@ -87,7 +86,7 @@ namespace MatchAll.Controllers
         public override async Task PostOpen()
         {
             await base.PostOpen();
-            if (Data.CurrentScore <= 0)
+            if (Data.MaxScore <= 0)
             {
                 EventManager.Get<GameMessageEvents>().OpenHint?.Invoke();
             }
@@ -103,6 +102,7 @@ namespace MatchAll.Controllers
             GameContainer.Timer = null;
             GameContainer.ShapeSample = null;
             GameContainer.ScoreManager = null;
+            GameContainer.SessionManager = null;
             Unsubscribe();
             await base.Close();
         }
@@ -120,10 +120,33 @@ namespace MatchAll.Controllers
             get => Data.CurrentScore;
             set
             {
+                if (value > Data.CurrentScore)
+                {
+                    EventManager.Get<GameEvents>().ScoreUp?.Invoke();
+                }
+                else if (value < Data.CurrentScore)
+                {
+                    EventManager.Get<GameEvents>().ScoreDown?.Invoke();
+                }
                 Data.CurrentScore = value;
                 GameScreenView.ScoreValue = value;
             }
         }
 
+        public void StartSession()
+        {
+        }
+
+        public void SessionWin()
+        {
+            Data.GameResult = GameEndType.Win;
+            EventManager.Get<GameEndMessageEvents>().OpenWinMessage?.Invoke();
+        }
+
+        public void SessionFail()
+        {
+            Data.GameResult = GameEndType.Fail;
+            EventManager.Get<GameEndMessageEvents>().OpenFailMessage?.Invoke();
+        }
     }
 }

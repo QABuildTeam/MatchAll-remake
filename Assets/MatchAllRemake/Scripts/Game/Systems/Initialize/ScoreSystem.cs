@@ -6,7 +6,7 @@ namespace MatchAll.Game
     public class ScoreSystem : IInitializeSystem, ITearDownSystem
     {
         private GameContext gameContext;
-        public ScoreSystem(Contexts contexts, UniversalEnvironment environment)
+        public ScoreSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
         }

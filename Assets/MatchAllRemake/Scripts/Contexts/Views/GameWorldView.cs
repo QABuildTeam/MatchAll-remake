@@ -50,9 +50,9 @@ namespace MatchAll.Views
             return Task.CompletedTask;
         }
 
-        public override Task Show(bool force = false)
+        public override Task Show()
         {
-            return base.Show(force);
+            return base.Show();
         }
 
         public override async Task Hide()
@@ -90,8 +90,8 @@ namespace MatchAll.Views
             }
             if (!exists)
             {
-                ShapeSettings shapeSettings = Environment.Get<UniversalSettingsManager>().Get<ShapeSettings>();
-                GameSessionSettings sessionSettings = Environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>();
+                ShapeSettings shapeSettings = Environment.Get<ISettingsManager>().Get<ShapeSettings>();
+                GameSessionSettings sessionSettings = Environment.Get<ISettingsManager>().Get<GameSessionSettings>();
                 var resolvedShapeObject = ShapeObjectHelper.Resolve(shapeDefinition, shapeSettings);
                 var loader = new ObjectLoader<ResolvedShapeObjectDisplay>(shapeSettings.ShapeObjectPrefab, rootTransform);
                 if (await loader.Load() != null)
@@ -121,7 +121,7 @@ namespace MatchAll.Views
             }
             if (exists)
             {
-                loader.Component.Color = Environment.Get<UniversalSettingsManager>().Get<ShapeSettings>().GetShapeColor(colorIndex);
+                loader.Component.Color = Environment.Get<ISettingsManager>().Get<ShapeSettings>().GetShapeColor(colorIndex);
             }
         }
 

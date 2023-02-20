@@ -7,7 +7,7 @@ namespace MatchAll.Game
     public class RenderSampleSystem : ReactiveSystem<GameEntity>, ITearDownSystem
     {
         private IGameManager gameManager;
-        public RenderSampleSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public RenderSampleSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameManager = environment.Get<IGameManager>();
         }

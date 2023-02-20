@@ -10,10 +10,10 @@ namespace MatchAll.Game
         private GameContext gameContext;
         private int matchScoreBonus;
         private int mismatchScorePenalty;
-        public ShapeObjectHitSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public ShapeObjectHitSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
-            var settings = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>();
+            var settings = environment.Get<ISettingsManager>().Get<GameSessionSettings>();
             matchScoreBonus = settings.matchScoreBonus;
             mismatchScorePenalty = settings.mismatchScorePenalty;
         }

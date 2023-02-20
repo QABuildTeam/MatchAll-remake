@@ -17,6 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e0025131c297384880fac3293b297a9, type: 2}
   uiObjects:
   - {fileID: 11400000, guid: b76ce15cb00029b4ebc6575c232736ef, type: 2}
-  - {fileID: 11400000, guid: 8d0f2dc036032a94bb91c1043a50ca13, type: 2}
-  - {fileID: 11400000, guid: 8dcedb06e18033449b5b3e72084f5d7d, type: 2}
   sceneName: 

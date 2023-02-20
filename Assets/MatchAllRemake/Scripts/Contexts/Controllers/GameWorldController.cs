@@ -11,10 +11,10 @@ namespace MatchAll.Controllers
 {
     public class GameWorldController : ContextController, ICameraController, IShapeObjectsDisplay
     {
-        private UniversalEventManager EventManager => environment.Get<UniversalEventManager>();
+        private IEventManager EventManager => environment.Get<IEventManager>();
         private GameWorldView GameView => (GameWorldView)view;
 
-        public GameWorldController(GameWorldView view, UniversalEnvironment environment) : base(view, environment)
+        public GameWorldController(GameWorldView view, IServiceLocator environment) : base(view, environment)
         {
         }
 

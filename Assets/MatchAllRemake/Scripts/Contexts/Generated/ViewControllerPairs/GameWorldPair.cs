@@ -6,7 +6,7 @@ namespace MatchAll.Controllers
 {
     public class GameWorldPair : ViewControllerPair<GameWorldController, GameWorldView>
     {
-        protected override GameWorldController GetContextController(GameWorldView view, UniversalEnvironment environment)
+        protected override GameWorldController GetContextController(GameWorldView view, IServiceLocator environment)
         {
             return new GameWorldController(view, environment);
         }

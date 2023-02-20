@@ -4,7 +4,8 @@ namespace MatchAll
     {
         string PlayerName { get; set; }
         int CurrentScore { get; set; }
-        int MaxScore { get; set; }
+        int MaxScore { get; }
+        GameEndType GameResult { get; set; }
 
     }
 }

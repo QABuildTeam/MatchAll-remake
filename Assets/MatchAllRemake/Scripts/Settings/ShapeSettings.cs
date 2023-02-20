@@ -2,11 +2,12 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using ACFW.Settings;
 
 namespace MatchAll.Settings
 {
     [CreateAssetMenu(fileName = "ShapeSettings", menuName = "Game Settings/Shape Settings")]
-    public class ShapeSettings : ScriptableObject
+    public class ShapeSettings : ScriptableSettings
     {
         [Serializable]
         private class ShapeSprite

@@ -9,7 +9,7 @@ namespace MatchAll.Game
     public class CameraSystem : IInitializeSystem, ITearDownSystem
     {
         private readonly GameContext gameContext;
-        public CameraSystem(Contexts contexts, UniversalEnvironment environment)
+        public CameraSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
         }

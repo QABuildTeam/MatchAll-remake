@@ -6,7 +6,7 @@ namespace MatchAll.Controllers
 {
     public class MainMenuUIPair : ViewControllerPair<MainMenuUIController, MainMenuUIView>
     {
-        protected override MainMenuUIController GetContextController(MainMenuUIView view, UniversalEnvironment environment)
+        protected override MainMenuUIController GetContextController(MainMenuUIView view, IServiceLocator environment)
         {
             return new MainMenuUIController(view, environment);
         }

@@ -12,9 +12,9 @@ namespace MatchAll.Game
         private ShapeType[] availableShapeTypes;
         private int[] availableShapeColors;
         private int sampleChangedPenalty;
-        public SampleSetupSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public SampleSetupSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
-            var settingsManager = environment.Get<UniversalSettingsManager>();
+            var settingsManager = environment.Get<ISettingsManager>();
             var shapeSettings = settingsManager.Get<ShapeSettings>();
             availableShapeTypes = shapeSettings.AvailableShapeTypes;
             availableShapeColors = shapeSettings.AvailableShapeColors;

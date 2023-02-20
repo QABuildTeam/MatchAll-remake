@@ -10,12 +10,12 @@ namespace MatchAll.Controllers
 {
     public partial class MainMenuUIController : ContextController
     {
-        private UniversalEventManager EventManager => environment.Get<UniversalEventManager>();
-        private UniversalSettingsManager SettingsManager => environment.Get<UniversalSettingsManager>();
+        private IEventManager EventManager => environment.Get<IEventManager>();
+        private ISettingsManager SettingsManager => environment.Get<ISettingsManager>();
         private IData Data => environment.Get<IData>();
 
         private MainMenuUIView MainMenuView => (MainMenuUIView)view;
-        public MainMenuUIController(MainMenuUIView view, UniversalEnvironment environment) : base(view, environment)
+        public MainMenuUIController(MainMenuUIView view, IServiceLocator environment) : base(view, environment)
         {
         }
 

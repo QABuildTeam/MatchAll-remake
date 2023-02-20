@@ -93,17 +93,8 @@ namespace MatchAll.Controllers
                 SaveScores();
             }
         }
-        public int MaxScore
-        {
-            get
-            {
-                if (PlayerScores.TryGetValue(PlayerName, out var score))
-                {
-                    return score.maxScore;
-                }
-                return 0;
-            }
-            set { }
-        }
+        public int MaxScore => PlayerScores.TryGetValue(PlayerName, out var score) ? score.maxScore : 0;
+
+        public GameEndType GameResult { get; set; } = GameEndType.None;
     }
 }

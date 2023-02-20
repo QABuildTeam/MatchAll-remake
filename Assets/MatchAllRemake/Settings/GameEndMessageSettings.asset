@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameEndMessageSettings
   m_EditorClassIdentifier: 
   descriptors:
-  - type: 0
+  - type: 1
     messageText: Great!\nYou won the game!
     imageReference:
       m_AssetGUID: 9c32cc8b6766d9f40834c52e876ddbc9
@@ -21,7 +21,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     buttonText: OK
-  - type: 1
+  - type: 2
     messageText: The time is over
     imageReference:
       m_AssetGUID: a7f618168aa6d4f4cbed9b6867c24294

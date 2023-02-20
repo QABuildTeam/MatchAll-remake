@@ -8,7 +8,7 @@ namespace MatchAll.Game
 {
     public class InitialSystems : Feature
     {
-        public InitialSystems(Contexts contexts, UniversalEnvironment environment) : base("Initial systems")
+        public InitialSystems(Contexts contexts, IServiceLocator environment) : base("Initial systems")
         {
             Add(new TimerSystem(contexts, environment));
             Add(new CameraSystem(contexts, environment));

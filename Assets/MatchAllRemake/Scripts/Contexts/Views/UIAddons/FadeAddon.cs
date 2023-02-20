@@ -15,13 +15,13 @@ namespace MatchAll.Views
         private CanvasGroupFader fader;
         protected CanvasGroupFader Fader => fader ?? (fader = GetComponent<CanvasGroupFader>());
 
-        public override Task DoShowTask(UniversalEnvironment environment)
+        public override Task DoShowTask(IServiceLocator environment)
         {
             Fader.ViewCanvasGroup.alpha = initialTransparency;
             return SetCanvasTransparency(1);
         }
 
-        public override Task DoHideTask(UniversalEnvironment environment)
+        public override Task DoHideTask(IServiceLocator environment)
         {
             return SetCanvasTransparency(0);
         }

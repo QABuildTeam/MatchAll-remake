@@ -10,9 +10,9 @@ namespace MatchAll.Game
         private readonly GameContext gameContext;
         private readonly float objectGenerationPeriod;
 
-        public ShapesGenerationCooldownSystem(Contexts contexts, UniversalEnvironment environment)
+        public ShapesGenerationCooldownSystem(Contexts contexts, IServiceLocator environment)
         {
-            objectGenerationPeriod = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>().objectGenerationPeriod;
+            objectGenerationPeriod = environment.Get<ISettingsManager>().Get<GameSessionSettings>().objectGenerationPeriod;
             gameContext = contexts.game;
         }
 

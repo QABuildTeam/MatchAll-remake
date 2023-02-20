@@ -82,7 +82,7 @@ namespace MatchAll.Views
             }
         }
 
-        private InputSettings InputSettings => Environment?.Get<UniversalSettingsManager>()?.Get<InputSettings>();
+        private InputSettings InputSettings => Environment?.Get<ISettingsManager>()?.Get<InputSettings>();
         private Vector2 CalculateVelocity(Vector2 position)
         {
             return Vector2.ClampMagnitude((position - screenCenter) * InputSettings.velocityFactor, InputSettings.maxVelocity) * Time.deltaTime;

@@ -8,10 +8,10 @@ namespace MatchAll.Game
     {
         private readonly GameContext gameContext;
         private readonly float sessionPeriod;
-        public TimerSystem(Contexts contexts, UniversalEnvironment environment)
+        public TimerSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
-            sessionPeriod = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>().sessionDuration;
+            sessionPeriod = environment.Get<ISettingsManager>().Get<GameSessionSettings>().sessionDuration;
         }
 
         public void Initialize()

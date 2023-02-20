@@ -6,7 +6,7 @@ namespace MatchAll.Game
     public class ShapeObjectSystem : IInitializeSystem, ICleanupSystem, ITearDownSystem
     {
         private readonly GameContext gameContext;
-        public ShapeObjectSystem(Contexts contexts, UniversalEnvironment environment)
+        public ShapeObjectSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
         }

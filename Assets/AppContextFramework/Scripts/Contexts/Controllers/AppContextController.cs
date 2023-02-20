@@ -11,7 +11,7 @@ namespace ACFW.Controllers
         private bool isOpen = false;
         public bool IsOpen() => isOpen;
 
-        protected UniversalEnvironment environment;
+        protected IServiceLocator environment;
         protected ViewControllerPair[] worldObjects;
         protected ViewControllerPair[] uiObjects;
         protected ITransformManager worldManager;
@@ -25,7 +25,7 @@ namespace ACFW.Controllers
             ViewControllerPair[] uiObjects,
             ITransformManager uiManager,
             string sceneName,
-            UniversalEnvironment environment)
+            IServiceLocator environment)
         {
             this.worldObjects = worldObjects;
             this.worldManager = worldManager;
@@ -114,7 +114,7 @@ namespace ACFW.Controllers
             {
                 return Task.CompletedTask;
             }
-            var tasks = controllers.Select(c => c.PostClose()).ToList();
+            var tasks = controllers.Select(c => c.PreClose()).ToList();
             return tasks.Count > 0 ? Task.WhenAll(tasks) : Task.CompletedTask;
         }
 

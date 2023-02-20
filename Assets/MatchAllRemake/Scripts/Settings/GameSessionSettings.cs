@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using ACFW.Settings;
 
 namespace MatchAll.Settings
 {
     [CreateAssetMenu(fileName = nameof(GameSessionSettings), menuName = "Game Settings/Game Session Settings")]
-    public class GameSessionSettings : ScriptableObject
+    public class GameSessionSettings : ScriptableSettings
     {
         // timing
         [Header("Timings")]

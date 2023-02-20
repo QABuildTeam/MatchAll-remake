@@ -7,7 +7,7 @@ namespace MatchAll.Game
     public class ScoreManagementSystem : ReactiveSystem<GameEntity>
     {
         private GameContext gameContext;
-        public ScoreManagementSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public ScoreManagementSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
         }

@@ -1,7 +1,6 @@
 using Entitas;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
-using UnityEngine;
 using ACFW;
 using MatchAll.Settings;
 
@@ -11,10 +10,10 @@ namespace MatchAll.Game
     {
         private GameContext gameContext;
         private int[] availableColors;
-        public RepaintObjectsOfColorAndTypeSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public RepaintObjectsOfColorAndTypeSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
-            var settingsManager = environment.Get<UniversalSettingsManager>();
+            var settingsManager = environment.Get<ISettingsManager>();
             var shapeSettings = settingsManager.Get<ShapeSettings>();
             availableColors = shapeSettings.AvailableShapeColors;
         }
@@ -24,12 +23,12 @@ namespace MatchAll.Game
             var r = new System.Random();
             foreach (var repaintDef in entities)
             {
-                foreach (var entity in gameContext.GetEntitiesWithShapeDefinition(repaintDef.repaintTypeAndColor.shapeDefinition))
+                foreach (var entity in gameContext.GetEntitiesWithShapeDefinition(repaintDef.repaintTypeAndColor.shapeDefinition).ToList())
                 {
                     if (entity.hasShapePosition)
                     {
                         var color = availableColors[r.Next(0, availableColors.Length)];
-                        entity.ReplaceShapeDefinition(new ShapeDefinition { shapeType = entity.shapeDefinition.ShapeType, colorIndex = color });
+                        entity.SetShapeColor(color);
                         entity.isSetShapeColor = true;
                     }
                 }

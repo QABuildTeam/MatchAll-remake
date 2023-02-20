@@ -9,7 +9,7 @@ namespace MatchAll.Game
     {
         private GameContext gameContext;
 
-        public TimeManagementSystem(Contexts contexts, UniversalEnvironment environment)
+        public TimeManagementSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
         }

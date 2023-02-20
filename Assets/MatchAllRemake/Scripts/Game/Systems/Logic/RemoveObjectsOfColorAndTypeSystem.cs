@@ -1,4 +1,5 @@
 using Entitas;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace MatchAll.Game
     public class RemoveObjectsOfColorAndTypeSystem : ReactiveSystem<GameEntity>
     {
         private GameContext gameContext;
-        public RemoveObjectsOfColorAndTypeSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public RemoveObjectsOfColorAndTypeSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
         }
@@ -18,7 +19,7 @@ namespace MatchAll.Game
         {
             foreach (var removeDef in entities)
             {
-                foreach (var entity in gameContext.GetEntitiesWithShapeDefinition(removeDef.removeTypeAndColor.shapeDefinition))
+                foreach (var entity in gameContext.GetEntitiesWithShapeDefinition(removeDef.removeTypeAndColor.shapeDefinition).ToList())
                 {
                     if (entity.hasShapePosition)
                     {

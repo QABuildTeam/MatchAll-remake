@@ -10,10 +10,10 @@ namespace MatchAll.Game
         private readonly GameContext gameContext;
         private readonly float sampleGenerationPeriod;
 
-        public SampleGenerationCooldownSystem(Contexts contexts, UniversalEnvironment environment)
+        public SampleGenerationCooldownSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
-            sampleGenerationPeriod = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>().sampleGenerationPeriod;
+            sampleGenerationPeriod = environment.Get<ISettingsManager>().Get<GameSessionSettings>().sampleGenerationPeriod;
         }
 
         public void Execute()

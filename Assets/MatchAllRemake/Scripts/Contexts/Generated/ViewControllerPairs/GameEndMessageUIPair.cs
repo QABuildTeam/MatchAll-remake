@@ -6,7 +6,7 @@ namespace MatchAll.Controllers
 {
     public class GameEndMessageUIPair : ViewControllerPair<GameEndMessageUIController, GameEndMessageUIView>
     {
-        protected override GameEndMessageUIController GetContextController(GameEndMessageUIView view, UniversalEnvironment environment)
+        protected override GameEndMessageUIController GetContextController(GameEndMessageUIView view, IServiceLocator environment)
         {
             return new GameEndMessageUIController(view, environment);
         }

@@ -10,7 +10,7 @@ namespace MatchAll.Game
         private Systems systems;
         private Contexts contexts;
         private bool isOpen = false;
-        public void Open(UniversalEnvironment environment)
+        public void Open(IServiceLocator environment)
         {
             contexts = Contexts.sharedInstance;
             systems = CreateSystems(contexts, environment);
@@ -41,7 +41,7 @@ namespace MatchAll.Game
             systems = null;
         }
 
-        private static Systems CreateSystems(Contexts contexts, UniversalEnvironment environment)
+        private static Systems CreateSystems(Contexts contexts, IServiceLocator environment)
         {
             return new Feature("Systems")
                 .Add(new InitialSystems(contexts, environment))

@@ -9,7 +9,7 @@ namespace MatchAll.Game
         private IGameManager gameManager;
         private GameContext gameContext;
 
-        public RenderShapeObjectsSystem(Contexts contexts, UniversalEnvironment environment) : base(contexts.game)
+        public RenderShapeObjectsSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameManager = environment.Get<IGameManager>();
             gameContext = contexts.game;

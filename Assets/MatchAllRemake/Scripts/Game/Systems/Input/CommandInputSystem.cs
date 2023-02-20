@@ -15,11 +15,11 @@ namespace MatchAll.Game
         private float areaYMin;
         private float objectSlotStep;
 
-        public CommandInputSystem(Contexts contexts, UniversalEnvironment environment)
+        public CommandInputSystem(Contexts contexts, IServiceLocator environment)
         {
             gameContext = contexts.game;
             gameManager = environment.Get<IGameManager>();
-            var settings = environment.Get<UniversalSettingsManager>().Get<GameSessionSettings>();
+            var settings = environment.Get<ISettingsManager>().Get<GameSessionSettings>();
             areaXMin = settings.areaXMin;
             areaYMin = settings.areaYMin;
             objectSlotStep = settings.objectSlotStep;
@@ -27,17 +27,20 @@ namespace MatchAll.Game
 
         public void Execute()
         {
+            var cameraEntity = gameContext.cameraEntity;
             if (gameContext.timerEntity.isTimerRunning)
             {
-                var cameraEntity = gameContext.cameraEntity;
                 var velocity = gameManager.CameraMovementVelocity;
                 cameraEntity.ReplaceVelocity(velocity);
                 if (gameManager.IsFieldPointed == true)
                 {
                     var position = ShapeObjectCellHelper.GetShapeObjectIndex(gameManager.FieldPointer, areaXMin, areaYMin, objectSlotStep);
-                    UnityEngine.Debug.Log($"Pointing at ({gameManager.FieldPointer.x},{gameManager.FieldPointer.y}), cameraPosition=({cameraEntity.cameraPosition.position.x},{cameraEntity.cameraPosition.position.y}), index ({position.x},{position.y})");
                     gameContext.SetShapeObjectPoint(position);
                 }
+            }
+            else
+            {
+                cameraEntity.ReplaceVelocity(Vector2.zero);
             }
         }
 
@@ -45,7 +48,6 @@ namespace MatchAll.Game
         {
             if (gameContext.hasShapeObjectPoint)
             {
-                UnityEngine.Debug.Log($"Removing ShapeObjectPoint ({gameContext.shapeObjectPoint.position.x},{gameContext.shapeObjectPoint.position.y})");
                 gameContext.RemoveShapeObjectPoint();
             }
         }

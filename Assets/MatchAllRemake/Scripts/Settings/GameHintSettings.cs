@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using ACFW.Settings;
 
 namespace MatchAll.Settings
 {
     [CreateAssetMenu(fileName = "GameHintSettings", menuName = "Game Settings/Game Hint Settings")]
-    public class GameHintSettings : ScriptableObject
+    public class GameHintSettings : ScriptableSettings
     {
         [Serializable]
         private class MessageDescriptor

@@ -7,7 +7,7 @@ namespace MatchAll.Game
     {
         private IGameManager gameManager;
         private GameContext gameContext;
-        public RenderScoreSystem(Contexts contexts, UniversalEnvironment environment)
+        public RenderScoreSystem(Contexts contexts, IServiceLocator environment)
         {
             gameManager = environment.Get<IGameManager>();
             gameContext = contexts.game;

@@ -5,7 +5,7 @@ namespace MatchAll.Game
 {
     public class LogicSystems : Feature
     {
-        public LogicSystems(Contexts contexts, UniversalEnvironment environment) : base("Logic systems")
+        public LogicSystems(Contexts contexts, IServiceLocator environment) : base("Logic systems")
         {
             Add(new TimeManagementSystem(contexts, environment));
             Add(new SampleGenerationCooldownSystem(contexts, environment));

@@ -6,7 +6,7 @@ namespace MatchAll.Controllers
 {
     public class GameScreenUIPair : ViewControllerPair<GameScreenUIController, GameScreenUIView>
     {
-        protected override GameScreenUIController GetContextController(GameScreenUIView view, UniversalEnvironment environment)
+        protected override GameScreenUIController GetContextController(GameScreenUIView view, IServiceLocator environment)
         {
             return new GameScreenUIController(view, environment);
         }
