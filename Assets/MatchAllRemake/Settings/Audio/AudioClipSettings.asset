@@ -34,3 +34,13 @@ MonoBehaviour:
     loop: 0
     descriptiveName: Game/Bad
     numericType: 11
+  - clip: {fileID: 8300000, guid: d80c19b85579ae44da63cd183d925be1, type: 3}
+    volumeNormalizingFactor: 1
+    loop: 0
+    descriptiveName: Game/Win
+    numericType: 12
+  - clip: {fileID: 8300000, guid: 50dd0931faeaaed42bf8724b172e244e, type: 3}
+    volumeNormalizingFactor: 1
+    loop: 0
+    descriptiveName: Game/Fail
+    numericType: 13

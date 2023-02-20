@@ -15,10 +15,10 @@ MonoBehaviour:
   sfxDescriptors:
   - eventRealm: GameEndMessageEvents
     eventName: OpenWinMessage
-    sfxType: 10
+    sfxType: 12
   - eventRealm: GameEndMessageEvents
     eventName: OpenFailMessage
-    sfxType: 11
+    sfxType: 13
   - eventRealm: GameEvents
     eventName: ScoreUp
     sfxType: 10
@@ -32,3 +32,9 @@ MonoBehaviour:
   - eventRealm: GameScreenEvents
     eventName: OpenGameScreen
     musicType: 10
+  - eventRealm: GameEndMessageEvents
+    eventName: OpenWinMessage
+    musicType: 0
+  - eventRealm: GameEndMessageEvents
+    eventName: OpenFailMessage
+    musicType: 0

@@ -18,22 +18,24 @@ namespace SimpleAudioSystem
         public void Init(IServiceLocator environment)
         {
             this.environment = environment;
-            EventManager.Get<MatchAll.Environment.GameEndMessageEvents>().OpenWinMessage += GameEndMessageEvents_OpenWinMessage_10;
-            EventManager.Get<MatchAll.Environment.GameEndMessageEvents>().OpenFailMessage += GameEndMessageEvents_OpenFailMessage_11;
+            EventManager.Get<MatchAll.Environment.GameEndMessageEvents>().OpenWinMessage += GameEndMessageEvents_OpenWinMessage_12;
+            EventManager.Get<MatchAll.Environment.GameEndMessageEvents>().OpenFailMessage += GameEndMessageEvents_OpenFailMessage_13;
             EventManager.Get<MatchAll.Environment.GameEvents>().ScoreUp += GameEvents_ScoreUp_10;
             EventManager.Get<MatchAll.Environment.GameEvents>().ScoreDown += GameEvents_ScoreDown_11;
             EventManager.Get<MatchAll.Environment.MainMenuEvents>().OpenMainMenu += MainMenuEvents_OpenMainMenu_11;
             EventManager.Get<MatchAll.Environment.GameScreenEvents>().OpenGameScreen += GameScreenEvents_OpenGameScreen_10;
+            EventManager.Get<MatchAll.Environment.GameEndMessageEvents>().OpenWinMessage += GameEndMessageEvents_OpenWinMessage_0;
+            EventManager.Get<MatchAll.Environment.GameEndMessageEvents>().OpenFailMessage += GameEndMessageEvents_OpenFailMessage_0;
 
         }
 
-        private void GameEndMessageEvents_OpenWinMessage_10()
+        private void GameEndMessageEvents_OpenWinMessage_12()
         {
-            EventManager.Get<AudioEvents>().PlaySFX?.Invoke(SFXTrackType.Game.Good);
+            EventManager.Get<AudioEvents>().PlaySFX?.Invoke(SFXTrackType.Game.Win);
         }
-        private void GameEndMessageEvents_OpenFailMessage_11()
+        private void GameEndMessageEvents_OpenFailMessage_13()
         {
-            EventManager.Get<AudioEvents>().PlaySFX?.Invoke(SFXTrackType.Game.Bad);
+            EventManager.Get<AudioEvents>().PlaySFX?.Invoke(SFXTrackType.Game.Fail);
         }
         private void GameEvents_ScoreUp_10()
         {
@@ -50,6 +52,14 @@ namespace SimpleAudioSystem
         private void GameScreenEvents_OpenGameScreen_10()
         {
             EventManager.Get<AudioEvents>().PlayMusic?.Invoke(MusicTrackType.GameTheme);
+        }
+        private void GameEndMessageEvents_OpenWinMessage_0()
+        {
+            EventManager.Get<AudioEvents>().PlayMusic?.Invoke(MusicTrackType.None);
+        }
+        private void GameEndMessageEvents_OpenFailMessage_0()
+        {
+            EventManager.Get<AudioEvents>().PlayMusic?.Invoke(MusicTrackType.None);
         }
 
     }
