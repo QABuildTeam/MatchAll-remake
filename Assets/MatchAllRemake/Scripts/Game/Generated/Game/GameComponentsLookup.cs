@@ -30,11 +30,12 @@ public static class GameComponentsLookup {
     public const int ShapeObjectPoint = 19;
     public const int ShapePosition = 20;
     public const int ShapeSample = 21;
-    public const int Timer = 22;
-    public const int TimerRunning = 23;
-    public const int Velocity = 24;
+    public const int ShapeStats = 22;
+    public const int Timer = 23;
+    public const int TimerRunning = 24;
+    public const int Velocity = 25;
 
-    public const int TotalComponents = 25;
+    public const int TotalComponents = 26;
 
     public static readonly string[] componentNames = {
         "Camera",
@@ -59,6 +60,7 @@ public static class GameComponentsLookup {
         "ShapeObjectPoint",
         "ShapePosition",
         "ShapeSample",
+        "ShapeStats",
         "Timer",
         "TimerRunning",
         "Velocity"
@@ -87,6 +89,7 @@ public static class GameComponentsLookup {
         typeof(MatchAll.Game.ShapeObjectPointComponent),
         typeof(MatchAll.Game.ShapePositionComponent),
         typeof(MatchAll.Game.ShapeSampleComponent),
+        typeof(MatchAll.Game.ShapeStatsComponent),
         typeof(MatchAll.Game.TimerComponent),
         typeof(MatchAll.Game.TimerRunningComponent),
         typeof(MatchAll.Game.VelocityComponent)

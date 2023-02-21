@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Entitas;
 using ACFW;
 using System.Collections.Generic;
@@ -9,22 +10,19 @@ using UnityEngine;
 
 namespace MatchAll.Game
 {
-    public class ShapeSetupSystem : ReactiveSystem<GameEntity>, ITearDownSystem
+    public class ShapeSetupSystem : ReactiveSystem<GameEntity>, ICleanupSystem, ITearDownSystem
     {
-        private List<Vector2Int> emptySpaces;
+        private GameContext gameContext;
 
         private int totalMaxObjectsCount;
         private int typeMaxObjectCount;
         private int objectGenRate;
         private ShapeType[] availableShapes;
         private int[] availableColors;
-        private GameContext gameContext;
-        private IGroup<GameEntity> shapeObjects;
 
         public ShapeSetupSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
-            shapeObjects = gameContext.GetGroup(GameMatcher.ShapePosition);
 
             var settingsManager = environment.Get<ISettingsManager>();
             var sessionSettings = settingsManager.Get<GameSessionSettings>();
@@ -35,27 +33,14 @@ namespace MatchAll.Game
             var shapeSettings = settingsManager.Get<ShapeSettings>();
             availableShapes = shapeSettings.AvailableShapeTypes;
             availableColors = shapeSettings.AvailableShapeColors;
-
-            var xIntCount = (int)(sessionSettings.areaWidth / sessionSettings.objectSlotStep) + 1;
-            var yIntCount = (int)(sessionSettings.areaHeight / sessionSettings.objectSlotStep) + 1;
-            emptySpaces = new List<Vector2Int>(xIntCount * yIntCount);
-            var position = new Vector2Int { x = 0, y = 0 };
-            for (position.y = 0; position.y < yIntCount; ++position.y)
-            {
-                for (position.x = 0; position.x<xIntCount; ++position.x)
-                {
-                    emptySpaces.Add(position);
-                }
-            }
         }
 
-        private (bool, Vector2Int) GetEmptySpace()
+        private (bool, Vector2Int) GetEmptySpace(GameEntity shapeStatsEntity)
         {
-            if (emptySpaces.Count > 0)
+            if (shapeStatsEntity.shapeStats.emptySpaces.Count > 0)
             {
-                var index = UnityEngine.Random.Range(0, emptySpaces.Count);
-                var position = emptySpaces[index];
-                emptySpaces.RemoveAt(index);
+                var index = UnityEngine.Random.Range(0, shapeStatsEntity.shapeStats.emptySpaces.Count);
+                var position = shapeStatsEntity.shapeStats.emptySpaces[index];
                 return (true, position);
             }
             return (false, new Vector2Int { x = 0, y = 0 });
@@ -64,21 +49,43 @@ namespace MatchAll.Game
         protected override void Execute(List<GameEntity> entities)
         {
             var r = new System.Random();
+            var shapeStatsEntity = gameContext.shapeStatsEntity;
+            var currentAvailableShapeTypes = availableShapes.ToList();
             foreach (var entity in entities)
             {
-                var totalObjectsCount = shapeObjects.count;
+                var totalObjectsCount = shapeStatsEntity.shapeStats.shapeObjectsCount;
                 var objectsToGenerate = Math.Min(totalMaxObjectsCount - totalObjectsCount, objectGenRate);
                 for (int i = 0; i < objectsToGenerate; ++i)
                 {
-                    var (hasEmptySpace, emptySpace) = GetEmptySpace();
+                    var (hasEmptySpace, emptySpace) = GetEmptySpace(shapeStatsEntity);
                     if (hasEmptySpace)
                     {
-                        var color = availableColors[r.Next(0, availableColors.Length)];
-                        var type = availableShapes[r.Next(0, availableShapes.Length)];
-                        var shape = gameContext.CreateEntity();
-                        shape.AddShapeDefinition(new ShapeDefinition { shapeType = type, colorIndex = color });
-                        shape.AddShapePosition(new Vector2Int { x = emptySpace.x, y = emptySpace.y });
-                        shape.isCreateShapeObject = true;
+                        var typeIndex = r.Next(0, currentAvailableShapeTypes.Count);
+                        var type = currentAvailableShapeTypes[typeIndex];
+                        if (shapeStatsEntity.shapeStats.shapeCount[type] < typeMaxObjectCount)
+                        {
+                            var color = availableColors[r.Next(0, availableColors.Length)];
+                            var shape = gameContext.CreateEntity();
+                            shape.AddShapeDefinition(new ShapeDefinition { shapeType = type, colorIndex = color });
+                            shape.AddShapePosition(new Vector2Int { x = emptySpace.x, y = emptySpace.y });
+                            shape.isCreateShapeObject = true;
+                        }
+                        else
+                        {
+                            currentAvailableShapeTypes.RemoveAt(typeIndex);
+                            if (currentAvailableShapeTypes.Count > 0)
+                            {
+                                --i;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
             }
@@ -94,14 +101,18 @@ namespace MatchAll.Game
             return context.CreateCollector(GameMatcher.GenerateShapes);
         }
 
+        public void Cleanup()
+        {
+            if (gameContext.isGenerateShapes)
+            {
+                gameContext.isGenerateShapes = false;
+            }
+        }
+
         public void TearDown()
         {
-            emptySpaces.Clear();
-            emptySpaces = null;
             availableShapes = null;
             availableColors = null;
-            gameContext = null;
-            shapeObjects = null;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace MatchAll.Game
             Add(new TimerSystem(contexts, environment));
             Add(new CameraSystem(contexts, environment));
             Add(new ScoreSystem(contexts, environment));
+            Add(new ShapeStatsSystem(contexts, environment));
             Add(new ShapeSampleSystem(contexts, environment));
             Add(new ShapeObjectSystem(contexts, environment));
         }
