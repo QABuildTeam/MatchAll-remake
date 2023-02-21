@@ -17,5 +17,9 @@ namespace MatchAll
         {
             return base.GetHashCode();
         }
+        public override string ToString()
+        {
+            return $"(shape:{shapeType},color:{colorIndex})";
+        }
     }
 }

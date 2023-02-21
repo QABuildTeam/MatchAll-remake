@@ -8,7 +8,9 @@ namespace MatchAll.Game
         {
             Add(new CameraMovementSystem(contexts, environment));
             Add(new RenderSampleSystem(contexts, environment));
-            Add(new RenderShapeObjectsSystem(contexts, environment));
+            Add(new RenderCreateObjectsSystem(contexts, environment));
+            Add(new RenderSetObjectsColorSystem(contexts, environment));
+            Add(new RenderDestroyObjectsSystem(contexts, environment));
             Add(new RenderScoreSystem(contexts, environment));
             Add(new RenderTimerSystem(contexts, environment));
         }

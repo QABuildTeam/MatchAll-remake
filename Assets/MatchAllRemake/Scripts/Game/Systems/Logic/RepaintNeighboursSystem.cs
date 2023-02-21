@@ -1,14 +1,12 @@
 using Entitas;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ACFW;
-using ACFW.Environment;
 using MatchAll.Settings;
 
 namespace MatchAll.Game
 {
-    public class RepaintNeighboursSystem : ReactiveSystem<GameEntity>
+    public class RepaintNeighboursSystem : ReactiveSystem<GameEntity>, ICleanupSystem
     {
         private GameContext gameContext;
         private int neighbourDistance;
@@ -42,12 +40,20 @@ namespace MatchAll.Game
 
         protected override bool Filter(GameEntity entity)
         {
-            return true;
+            return entity.hasRepaintNeightbours;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.RepaintNeightbours);
+        }
+
+        public void Cleanup()
+        {
+            if (gameContext.hasRepaintNeightbours)
+            {
+                gameContext.RemoveRepaintNeightbours();
+            }
         }
     }
 }

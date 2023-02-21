@@ -6,11 +6,11 @@ using MatchAll.Settings;
 
 namespace MatchAll.Game
 {
-    public class RepaintObjectsOfColorAndTypeSystem : ReactiveSystem<GameEntity>
+    public class RepaintTypeAndColorSystem : ReactiveSystem<GameEntity>, ICleanupSystem
     {
         private GameContext gameContext;
         private int[] availableColors;
-        public RepaintObjectsOfColorAndTypeSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
+        public RepaintTypeAndColorSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
             var settingsManager = environment.Get<ISettingsManager>();
@@ -37,12 +37,20 @@ namespace MatchAll.Game
 
         protected override bool Filter(GameEntity entity)
         {
-            return true;
+            return entity.hasRepaintTypeAndColor;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.RepaintTypeAndColor);
+        }
+
+        public void Cleanup()
+        {
+            if (gameContext.hasRepaintTypeAndColor)
+            {
+                gameContext.RemoveRepaintTypeAndColor();
+            }
         }
     }
 }

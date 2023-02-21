@@ -5,7 +5,7 @@ using MatchAll.Settings;
 
 namespace MatchAll.Game
 {
-    public class ShapeObjectHitSystem : ReactiveSystem<GameEntity>
+    public class ShapeObjectHitSystem : ReactiveSystem<GameEntity>, ICleanupSystem
     {
         private GameContext gameContext;
         private int matchScoreBonus;
@@ -58,6 +58,14 @@ namespace MatchAll.Game
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.ShapeObjectPoint);
+        }
+
+        public void Cleanup()
+        {
+            if (gameContext.hasShapeObjectPoint)
+            {
+                gameContext.RemoveShapeObjectPoint();
+            }
         }
     }
 }

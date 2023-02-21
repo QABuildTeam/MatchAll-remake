@@ -1,16 +1,15 @@
 using Entitas;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ACFW;
 
 namespace MatchAll.Game
 {
-    public class RemoveObjectsOfColorAndTypeSystem : ReactiveSystem<GameEntity>
+    public class RemoveTypeAndColorSystem : ReactiveSystem<GameEntity>, ICleanupSystem
     {
         private GameContext gameContext;
-        public RemoveObjectsOfColorAndTypeSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
+        public RemoveTypeAndColorSystem(Contexts contexts, IServiceLocator environment) : base(contexts.game)
         {
             gameContext = contexts.game;
         }
@@ -24,6 +23,7 @@ namespace MatchAll.Game
                     if (entity.hasShapePosition)
                     {
                         entity.isDestroyShapeObject = true;
+                        Debug.Log($"Destroy entity {entity.shapeDefinition.definition} at {entity.shapePosition.position} = {entity.isDestroyShapeObject}");
                     }
                 }
             }
@@ -31,12 +31,20 @@ namespace MatchAll.Game
 
         protected override bool Filter(GameEntity entity)
         {
-            return true;
+            return entity.hasRemoveTypeAndColor;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
             return context.CreateCollector(GameMatcher.RemoveTypeAndColor);
+        }
+
+        public void Cleanup()
+        {
+            if (gameContext.hasRemoveTypeAndColor)
+            {
+                gameContext.RemoveRemoveTypeAndColor();
+            }
         }
     }
 }
