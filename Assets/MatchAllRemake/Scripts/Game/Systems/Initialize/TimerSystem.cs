@@ -18,6 +18,7 @@ namespace MatchAll.Game
         {
             gameContext.isTimer = true;
             gameContext.timerEntity.AddRemainingTime(sessionPeriod);
+            gameContext.timerEntity.AddTimeDelta(0);
         }
         public void TearDown()
         {

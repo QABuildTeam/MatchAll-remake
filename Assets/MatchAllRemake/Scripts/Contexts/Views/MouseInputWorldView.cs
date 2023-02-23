@@ -2,7 +2,6 @@ using UnityEngine;
 using ACFW;
 using ACFW.Views;
 using System.Threading.Tasks;
-using System;
 using MatchAll.Settings;
 
 namespace MatchAll.Views
@@ -21,8 +20,6 @@ namespace MatchAll.Views
 
         public override Task PostHide()
         {
-            GameStopped = null;
-            FieldPointed = null;
             worldCamera = null;
             return base.PostHide();
         }
@@ -72,13 +69,12 @@ namespace MatchAll.Views
             }
             if (pointersInfo[0].state == MouseButtonState.Pressed)
             {
-                IsFieldPointed = true;
-                FieldPointer = worldCamera.ScreenToWorldPoint(pointersInfo[0].currentPosition);
-                FieldPointed?.Invoke(FieldPointer);
+                fieldPointer.IsPointed = true;
+                fieldPointer.Pointer = worldCamera.ScreenToWorldPoint(pointersInfo[0].currentPosition);
             }
             else
             {
-                IsFieldPointed = false;
+                fieldPointer.IsPointed = false;
             }
         }
 
@@ -93,10 +89,7 @@ namespace MatchAll.Views
             CalculateVelocity(pointersInfo[0].currentPosition) :
             Vector2.zero;
 
-        public bool IsFieldPointed { get; private set; }
-        public Vector2 FieldPointer { get; private set; }
-
-        public event Action<Vector2> FieldPointed;
-        public event Action GameStopped;
+        public FieldPointer fieldPointer = new FieldPointer { IsPointed = false, Pointer = Vector2.zero };
+        public FieldPointer FieldPointer => fieldPointer;
     }
 }

@@ -135,7 +135,6 @@ namespace MatchAll.Views
             }
             if (exists)
             {
-                Debug.Log($"Disposing object at {position}");
                 loader.Component.Dispose();
                 loader.Dispose();
                 lock (_sync)

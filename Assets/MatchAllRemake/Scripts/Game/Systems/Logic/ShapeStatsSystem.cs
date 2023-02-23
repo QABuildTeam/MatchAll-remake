@@ -2,7 +2,6 @@ using Entitas;
 using System.Collections.Generic;
 using ACFW;
 using MatchAll.Settings;
-using System;
 #if UNITY_5_3_OR_NEWER
 using UnityEngine;
 #endif

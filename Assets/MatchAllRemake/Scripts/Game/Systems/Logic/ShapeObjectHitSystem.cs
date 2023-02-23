@@ -33,14 +33,12 @@ namespace MatchAll.Game
                             var scoreDelta = gameContext.CreateEntity();
                             if (target.shapeDefinition.definition == shapeSampleEntity.shapeDefinition.definition)
                             {
-                                UnityEngine.Debug.Log($"Entity matches: ({target.shapeDefinition.definition.shapeType},{target.shapeDefinition.definition.colorIndex})");
                                 scoreDelta.AddScoreDelta(matchScoreBonus);
                                 gameContext.SetRemoveTypeAndColor(target.shapeDefinition.definition);
                                 gameContext.SetRepaintNeightbours(target.shapePosition.position, target.shapeDefinition.definition.colorIndex);
                             }
                             else
                             {
-                                UnityEngine.Debug.Log($"Entity does not match: ({target.shapeDefinition.definition.shapeType},{target.shapeDefinition.definition.colorIndex})");
                                 scoreDelta.AddScoreDelta(-mismatchScorePenalty);
                                 gameContext.SetRepaintTypeAndColor(target.shapeDefinition.definition);
                             }

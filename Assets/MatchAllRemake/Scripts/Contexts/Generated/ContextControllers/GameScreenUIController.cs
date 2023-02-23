@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using MatchAll.Views;
 using MatchAll.Environment;
 using MatchAll.Settings;
+using UnityEngine;
 
 namespace MatchAll.Controllers
 {
-    public partial class GameScreenUIController : ContextController, ITimer, IShapeSample, IScore, ISessionManager
+    public partial class GameScreenUIController : ContextController, ITimerInput, ITimer, IShapeSample, IScore, ISessionManager
     {
 
         private IEventManager EventManager => environment.Get<IEventManager>();
@@ -40,12 +41,12 @@ namespace MatchAll.Controllers
 
         private void OnOpenWinMessage()
         {
-            IsTimerRunning = false;
+            TimerRunning = false;
         }
 
         private void OnOpenFailMessage()
         {
-            IsTimerRunning = false;
+            TimerRunning = false;
         }
 
         private void OnCloseEndMessage()
@@ -55,7 +56,7 @@ namespace MatchAll.Controllers
 
         private void OnCloseHint()
         {
-            IsTimerRunning = true;
+            TimerRunning = true;
         }
 
         private void Unsubscribe()
@@ -70,9 +71,10 @@ namespace MatchAll.Controllers
 
         public override async Task Open()
         {
-            IsTimerRunning = false;
+            TimerRunning = false;
             CurrentScore = 0;
             GameContainer.Timer = this;
+            GameContainer.TimerInput = this;
             GameContainer.ShapeSample = this;
             GameContainer.ScoreManager = this;
             GameContainer.SessionManager = this;
@@ -92,14 +94,15 @@ namespace MatchAll.Controllers
             }
             else
             {
-                IsTimerRunning = true;
+                TimerRunning = true;
             }
         }
 
         public override async Task Close()
         {
-            IsTimerRunning = false;
+            TimerRunning = false;
             GameContainer.Timer = null;
+            GameContainer.TimerInput = null;
             GameContainer.ShapeSample = null;
             GameContainer.ScoreManager = null;
             GameContainer.SessionManager = null;
@@ -107,14 +110,26 @@ namespace MatchAll.Controllers
             await base.Close();
         }
 
+        #region ITimerInput implementation
+        public float DeltaTime => Time.deltaTime;
+
+        public bool Running => TimerRunning;
+        #endregion
+
+        #region IShapeSample implementation
         public void SetShapeSample(ShapeDefinition shapeDefinition)
         {
             GameScreenView.SampleDisplayBackground = ShapeObjectHelper.Resolve(shapeDefinition, ShapeSettings);
         }
+        #endregion
 
+        #region ITimer implementation
         private float remainingTime = 0;
         public float RemainingTime { get => remainingTime; set => GameScreenView.TimerValue = remainingTime = value; }
-        public bool IsTimerRunning { get; set; } = false;
+        public bool TimerRunning { get; set; } = false;
+        #endregion
+
+        #region IScore implementation
         public int CurrentScore
         {
             get => Data.CurrentScore;
@@ -132,7 +147,9 @@ namespace MatchAll.Controllers
                 GameScreenView.ScoreValue = value;
             }
         }
+        #endregion
 
+        #region ISessionManager implementation
         public void StartSession()
         {
         }
@@ -148,5 +165,6 @@ namespace MatchAll.Controllers
             Data.GameResult = GameEndType.Fail;
             EventManager.Get<GameEndMessageEvents>().OpenFailMessage?.Invoke();
         }
+        #endregion
     }
 }

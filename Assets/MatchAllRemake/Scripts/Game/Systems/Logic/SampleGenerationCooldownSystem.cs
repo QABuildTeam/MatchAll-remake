@@ -1,6 +1,5 @@
 using Entitas;
 using ACFW;
-using UnityEngine;
 using MatchAll.Settings;
 
 namespace MatchAll.Game
@@ -21,7 +20,7 @@ namespace MatchAll.Game
             if (gameContext.timerEntity.isTimerRunning)
             {
                 var shapeSample = gameContext.shapeSampleEntity;
-                shapeSample.ReplaceGenerateSampleCooldown(shapeSample.generateSampleCooldown.cooldown - Time.deltaTime);
+                shapeSample.ReplaceGenerateSampleCooldown(shapeSample.generateSampleCooldown.cooldown - gameContext.timerEntity.timeDelta.timeDelta);
                 if (shapeSample.generateSampleCooldown.cooldown <= 0)
                 {
                     shapeSample.isGenerateSample = true;

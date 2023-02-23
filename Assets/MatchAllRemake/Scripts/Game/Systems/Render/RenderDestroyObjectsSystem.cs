@@ -1,7 +1,6 @@
 using Entitas;
 using ACFW;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MatchAll.Game
 {
@@ -18,7 +17,6 @@ namespace MatchAll.Game
         {
             foreach (var entity in entities)
             {
-                Debug.Log($"Send to destroy entity {entity.shapeDefinition.definition} at {entity.shapePosition.position}");
                 gameManager.DestroyShapeObject(entity.shapePosition.position);
                 entity.Destroy();
             }

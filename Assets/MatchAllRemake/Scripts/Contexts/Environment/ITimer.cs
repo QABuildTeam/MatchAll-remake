@@ -2,7 +2,7 @@ namespace MatchAll
 {
     public interface ITimer
     {
-        public bool IsTimerRunning { get; set; }
-        public float RemainingTime { get; set; }
+        public bool TimerRunning { set; }
+        public float RemainingTime { set; }
     }
 }

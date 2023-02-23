@@ -6,12 +6,15 @@ namespace MatchAll
 {
     public interface IGameContainer
     {
-        IPlayerInput PlayerInput { get; set; }
-        ICameraController CameraController { get; set; }
-        ITimer Timer { get; set; }
-        IShapeSample ShapeSample { get; set; }
-        ISessionManager SessionManager { get; set; }
-        IScore ScoreManager { get; set; }
-        IShapeObjectsDisplay ShapesDisplay { get; set; }
+        // Input
+        IPlayerInput PlayerInput { set; }
+        ICameraController CameraController { set; }
+        ITimerInput TimerInput { set; }
+        // Output
+        ITimer Timer { set; }
+        IShapeSample ShapeSample { set; }
+        ISessionManager SessionManager { set; }
+        IScore ScoreManager { set; }
+        IShapeObjectsDisplay ShapesDisplay { set; }
     }
 }

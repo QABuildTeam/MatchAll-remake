@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace MatchAll
 {
+    public struct FieldPointer
+    {
+        public bool IsPointed { get; set; }
+        public Vector2 Pointer { get; set; }
+    }
     public interface IPlayerInput
     {
         Vector2 CameraMovementVelocity { get; }
-        bool IsFieldPointed { get; }
-        Vector2 FieldPointer { get; }
-        event Action<Vector2> FieldPointed;
-        event Action GameStopped;
+        FieldPointer FieldPointer { get; }
     }
 }

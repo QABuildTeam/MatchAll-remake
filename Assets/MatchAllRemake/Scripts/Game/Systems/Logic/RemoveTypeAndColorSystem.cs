@@ -1,7 +1,6 @@
 using Entitas;
 using System.Linq;
 using System.Collections.Generic;
-using UnityEngine;
 using ACFW;
 
 namespace MatchAll.Game
@@ -23,7 +22,6 @@ namespace MatchAll.Game
                     if (entity.hasShapePosition)
                     {
                         entity.isDestroyShapeObject = true;
-                        Debug.Log($"Destroy entity {entity.shapeDefinition.definition} at {entity.shapePosition.position} = {entity.isDestroyShapeObject}");
                     }
                 }
             }

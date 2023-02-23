@@ -32,9 +32,10 @@ namespace MatchAll.Game
             {
                 var velocity = gameManager.CameraMovementVelocity;
                 cameraEntity.ReplaceVelocity(velocity);
-                if (gameManager.IsFieldPointed == true)
+                var fieldPointer = gameManager.FieldPointer;
+                if (fieldPointer.IsPointed == true)
                 {
-                    var position = ShapeObjectCellHelper.GetShapeObjectIndex(gameManager.FieldPointer, areaXMin, areaYMin, objectSlotStep);
+                    var position = ShapeObjectCellHelper.GetShapeObjectIndex(fieldPointer.Pointer, areaXMin, areaYMin, objectSlotStep);
                     gameContext.SetShapeObjectPoint(position);
                 }
             }

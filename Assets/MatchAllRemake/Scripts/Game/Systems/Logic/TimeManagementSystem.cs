@@ -19,10 +19,11 @@ namespace MatchAll.Game
             var timer = gameContext.timerEntity;
             if (timer.isTimerRunning)
             {
-                var newTime = timer.remainingTime.time - Time.deltaTime;
+                var newTime = timer.remainingTime.time - timer.timeDelta.timeDelta;
                 if (newTime <= 0)
                 {
                     newTime = 0;
+                    timer.isTimerRunning = false;
                     gameContext.isFinishGame = true;
                 }
                 timer.ReplaceRemainingTime(newTime);
